@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 
@@ -55,6 +56,7 @@ const Footer = () => {
           &copy; {new Date().getFullYear()} Sayak Das. All rights reserved.
         </p>
         <div className="flex items-center gap-10">
+          <Link to="/achievements" className="text-[10px] tracking-[0.3em] uppercase text-primary font-bold hover:gap-2 transition-all">Achievements</Link>
           {['Github', 'LinkedIn', 'Instagram', 'Twitter'].map((social) => (
             <a key={social} href="#" className="text-[10px] tracking-[0.3em] uppercase text-text font-bold hover:text-primary transition-colors">
               {social}

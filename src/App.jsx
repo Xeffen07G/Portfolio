@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import ProjectsPage from "./pages/ProjectsPage";
 import AchievementsPage from "./pages/AchievementsPage";
-import Certifications from "./components/Certifications";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import SmoothScroll from "./components/SmoothScroll";
@@ -27,6 +27,7 @@ function App() {
 
       <SmoothScroll>
         <div className="min-h-screen bg-bg text-text font-sans">
+          <Navbar />
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
