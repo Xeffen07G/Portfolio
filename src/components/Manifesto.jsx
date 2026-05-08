@@ -64,6 +64,8 @@ const Manifesto = () => {
                 <img
                   src={item.image}
                   alt={item.title.replace('\n', ' ')}
+                  width="800"
+                  height="600"
                   className="w-full h-full object-cover grayscale brightness-50 group-hover:brightness-90 transition-all duration-1000 group-hover:scale-110"
                   loading="lazy"
                 />

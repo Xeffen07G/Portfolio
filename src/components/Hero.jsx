@@ -45,6 +45,10 @@ const Hero = () => {
             <img 
               src={heroImg} 
               alt="Sayak Das" 
+              width="384"
+              height="512"
+              loading="eager"
+              fetchpriority="high"
               className="w-56 sm:w-64 md:w-72 lg:w-80 h-auto object-cover grayscale contrast-125 brightness-90 relative z-10"
             />
             {/* Decorative grid lines behind portrait */}
