@@ -9,9 +9,9 @@ const Hero = () => {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
 
       {/* Main hero content */}
-      <div className="flex-1 flex flex-col xl:flex-row items-center xl:items-end justify-between relative z-10 gap-12 xl:gap-16">
+      <div className="flex-1 flex flex-col lg:flex-row items-center lg:items-end justify-between relative z-10 gap-8 lg:gap-4 xl:gap-16">
         {/* Left side - Name */}
-        <div className="w-full xl:w-auto text-center xl:text-left order-2 xl:order-1">
+        <div className="w-full lg:w-auto text-center lg:text-left order-2 lg:order-1 flex-shrink">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -20,7 +20,7 @@ const Hero = () => {
             <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold">
               Engineering <span className="text-primary">/</span> AI Systems
             </p>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-7xl xl:text-9xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
               SAYAK<br />
               DAS
             </h1>
@@ -28,15 +28,15 @@ const Hero = () => {
         </div>
 
         {/* Center - Portrait */}
-        <div className="relative order-1 xl:order-2 shrink-0 z-20">
+        <div className="relative order-1 lg:order-2 shrink-0 z-20 mx-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-64 sm:w-72 md:w-80 aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 group shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]"
+            className="relative w-64 sm:w-72 md:w-80 lg:w-64 xl:w-80 aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 group shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]"
           >
             <img 
-              src="/sayak-final.png" 
+              src="/profile.png" 
               alt="Sayak Das" 
               className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
             />
@@ -46,19 +46,19 @@ const Hero = () => {
         </div>
 
         {/* Right side - Titles */}
-        <div className="w-full xl:w-auto text-center xl:text-right order-3">
+        <div className="w-full lg:w-auto text-center lg:text-right order-3 flex-shrink">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <span className="text-primary text-[10px] font-black tracking-[0.4em]">SPEC 01</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
               DEV<span className="text-primary">EL</span>OPER
             </h2>
             
             <span className="text-primary text-[10px] font-black tracking-[0.4em] block">SPEC 02</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.85] tracking-tighter uppercase" 
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-black leading-[0.85] tracking-tighter uppercase" 
               style={{ WebkitTextStroke: '1px rgba(224, 255, 0, 0.4)', color: 'transparent' }}>
               & AI/ML
             </h2>
