@@ -9,12 +9,44 @@ const Contact = () => {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Hook up to a real service (Formspree, EmailJS, etc.) later
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setForm({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    
+    // Convert form data to JSON for Web3Forms
+    const formData = new FormData(e.target);
+    // USER: Replace the string below with your actual Web3Forms Access Key!
+    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        setSent(true);
+        setTimeout(() => setSent(false), 4000);
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed to send message: " + data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socials = [
@@ -117,9 +149,12 @@ const Contact = () => {
             </div>
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm bg-gradient-to-r from-primary to-accent text-white hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02] transition-all duration-300"
+              disabled={isSubmitting || sent}
+              className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                sent ? "bg-green-500 text-white" : "bg-gradient-to-r from-primary to-accent text-white hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]"
+              } disabled:opacity-70 disabled:cursor-not-allowed`}
             >
-              {sent ? "✓ Message Sent!" : <><FiSend /> Send Message</>}
+              {sent ? "✓ Message Sent!" : isSubmitting ? "Sending..." : <><FiSend /> Send Message</>}
             </button>
           </motion.form>
 
