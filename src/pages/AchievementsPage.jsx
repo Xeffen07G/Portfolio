@@ -1,28 +1,41 @@
-import React from "react";
-import Achievements from "../components/Achievements";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import Certifications from "../components/Certifications";
+import { FiArrowLeft } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const AchievementsPage = () => {
+  // Ensure we start at the top of the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen pt-20"
-    >
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <header className="mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-text-bright mb-4">
-            Awards & <span className="gradient-text">Recognition</span>
-          </h1>
-          <p className="text-text text-lg max-w-2xl">
-            A timeline of my academic and professional growth. 
-            Certifications, hackathon wins, and leadership roles that have shaped my journey.
-          </p>
-        </header>
-        <Achievements />
+    <div className="min-h-screen bg-bg pt-32 pb-20">
+      <div className="px-6 md:px-12 lg:px-24 mb-12">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 text-[10px] font-black tracking-[0.3em] text-primary uppercase hover:gap-4 transition-all duration-300 group"
+        >
+          <FiArrowLeft className="text-lg" /> BACK TO STUDIO
+        </Link>
       </div>
-    </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <Certifications />
+      </motion.div>
+      
+      {/* Visual Footer for the page */}
+      <div className="px-6 md:px-12 lg:px-24 mt-20 border-t border-white/5 pt-10">
+        <p className="text-[10px] font-bold text-text/40 tracking-widest uppercase">
+          Sayak Das — Documented Excellence 2024-2026
+        </p>
+      </div>
+    </div>
   );
 };
 
