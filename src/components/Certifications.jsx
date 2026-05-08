@@ -1,23 +1,63 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FiAward, FiExternalLink } from "react-icons/fi";
+import { FiAward, FiExternalLink, FiTarget } from "react-icons/fi";
 
 const certifications = [
+  {
+    title: "IDEA CHAIN Winner (3rd)",
+    issuer: "Takshila Club / Innovation & Management",
+    date: "2025",
+    color: "#e0ff00",
+    tags: ["Winner", "Ideathon", "Management"],
+    id: "TIU-25-WIN"
+  },
+  {
+    title: "Sandbox CCU Excellence",
+    issuer: "Techno India University / Edition #2",
+    date: "2025",
+    color: "#00f0ff",
+    tags: ["Excellence", "Top-Performer", "Team GalpoPath"],
+    id: "TIU-25-SND"
+  },
+  {
+    title: "GDG Devcation Delhi",
+    issuer: "Google Developer Groups / IIT Delhi",
+    date: "2026",
+    color: "#ff00e0",
+    tags: ["Google Devs", "GDG Delhi", "Tech Summit"],
+    id: "GDG-26-DEV"
+  },
   {
     title: "Innovex Storm Hackathon",
     issuer: "SRMIST / SRM Institute of Science and Tech",
     date: "2024",
-    color: "#e0ff00",
+    color: "#ffffff",
     tags: ["Hackathon", "Team NoXperience", "Innovation"],
     id: "SRM-24-HACK"
+  },
+  {
+    title: "Hackfest Captain",
+    issuer: "GeeksforGeeks Classroom Program",
+    date: "2024",
+    color: "#e0ff00",
+    tags: ["Captain", "GFG Hack", "Leadership"],
+    id: "GFG-24-CAP"
   },
   {
     title: "CXO' Round Table",
     issuer: "Techno India University / Takshila",
     date: "2024",
-    color: "#ff00e0",
+    color: "#00f0ff",
     tags: ["Leadership", "Innovation & Management", "CXO Forum"],
     id: "TIU-24-CXO"
+  },
+  {
+    title: "THE ESCAPE: IDEATHON",
+    issuer: "Takshila Club / Computing Domain",
+    date: "2025",
+    color: "#ff00e0",
+    tags: ["Ideathon", "Computing", "Strategy"],
+    id: "TIU-25-ESC"
   },
   {
     title: "Pitch To Deck Event",
@@ -56,64 +96,63 @@ const Certifications = () => {
           THE <span className="text-primary italic">VAULT</span>
         </h2>
         <p className="text-text max-w-xl mt-6 text-lg">
-          A documented record of specialized participations, hackathons, and professional milestones across the tech ecosystem.
+          An elite archive of 9 high-impact certifications, winner titles, and leadership roles in the global tech and innovation ecosystem.
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {certifications.map((cert, i) => (
           <motion.div
             key={cert.title}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.8 }}
+            transition={{ delay: i * 0.05, duration: 0.8 }}
             whileHover={{ y: -10 }}
-            className="group relative bg-white/[0.02] border border-white/5 p-8 lg:p-10 rounded-2xl overflow-hidden hover:bg-white/[0.04] transition-all duration-500"
+            className="group relative bg-white/[0.02] border border-white/5 p-6 rounded-2xl overflow-hidden hover:bg-white/[0.04] transition-all duration-500"
           >
             {/* Glowing corner indicator */}
             <div 
-              className="absolute top-0 right-0 w-24 h-24 opacity-20 blur-3xl transition-opacity group-hover:opacity-40"
+              className="absolute top-0 right-0 w-20 h-20 opacity-20 blur-3xl transition-opacity group-hover:opacity-40"
               style={{ backgroundColor: cert.color }}
             />
             
-            <div className="flex justify-between items-start mb-12">
-              <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
-                <FiAward className="text-xl text-primary" />
+            <div className="flex justify-between items-start mb-8">
+              <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                {cert.tags.includes("Winner") ? (
+                  <FiTarget className="text-lg text-primary" />
+                ) : (
+                  <FiAward className="text-lg text-primary" />
+                )}
               </div>
-              <span className="text-[10px] font-black tracking-[0.2em] text-text-bright/40 uppercase">
+              <span className="text-[9px] font-black tracking-[0.2em] text-text-bright/40 uppercase">
                 {cert.id}
               </span>
             </div>
 
             <div className="relative z-10">
-              <span className="text-[10px] font-bold text-primary tracking-widest uppercase mb-2 block">
+              <span className="text-[9px] font-bold text-primary tracking-widest uppercase mb-2 block">
                 {cert.issuer}
               </span>
-              <h3 className="text-2xl md:text-3xl font-black text-text-bright tracking-tight uppercase leading-none mb-6 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-black text-text-bright tracking-tight uppercase leading-none mb-4 group-hover:text-primary transition-colors">
                 {cert.title}
               </h3>
               
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-wrap gap-2 mb-6">
                 {cert.tags.map(tag => (
-                  <span key={tag} className="text-[9px] font-bold px-2 py-1 bg-white/5 rounded border border-white/10 text-text uppercase">
+                  <span key={tag} className="text-[8px] font-bold px-2 py-1 bg-white/5 rounded border border-white/10 text-text uppercase">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center justify-between pt-6 border-t border-white/5">
+              <div className="flex items-center justify-between pt-4 border-t border-white/5">
                 <span className="text-xs font-bold text-text uppercase italic">{cert.date}</span>
-                <button className="flex items-center gap-2 text-[10px] font-black tracking-widest text-text-bright uppercase group-hover:text-primary transition-all">
-                  SECURE RECORD <FiExternalLink />
+                <button className="flex items-center gap-2 text-[9px] font-black tracking-widest text-text-bright uppercase group-hover:text-primary transition-all">
+                  VIEW <FiExternalLink />
                 </button>
               </div>
             </div>
-
-            {/* Background Number */}
-            <span className="absolute -bottom-4 -right-2 text-8xl font-black text-white/[0.02] select-none group-hover:text-primary/[0.03] transition-colors">
-              0{i+1}
-            </span>
           </motion.div>
         ))}
       </div>
