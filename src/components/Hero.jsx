@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
-import heroImg from "../assets/hero-portrait.png";
 
 const Hero = () => {
   return (
@@ -37,19 +36,19 @@ const Hero = () => {
         {/* Center - Portrait */}
         <div className="lg:col-span-3 flex justify-center relative">
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.8, duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="relative w-full max-w-[384px] aspect-[3/4] mx-auto lg:ml-auto overflow-hidden rounded-2xl grayscale hover:grayscale-0 transition-all duration-700"
           >
             <img 
-              src={heroImg} 
+              src="/hero-portrait.png" 
               alt="Sayak Das" 
               width="384"
               height="512"
               loading="eager"
               fetchpriority="high"
-              className="w-56 sm:w-64 md:w-72 lg:w-80 h-auto object-cover grayscale contrast-125 brightness-90 relative z-10"
+              className="w-full h-full object-cover"
             />
             {/* Decorative grid lines behind portrait */}
             <div className="absolute -inset-6 z-0 opacity-10">
