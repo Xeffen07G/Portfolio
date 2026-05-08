@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
-import ProjectsPage from "./pages/ProjectsPage";
-import AchievementsPage from "./pages/AchievementsPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -11,6 +9,9 @@ import SmoothScroll from "./components/SmoothScroll";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
 import "./index.css";
+
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const AchievementsPage = lazy(() => import("./pages/AchievementsPage"));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,11 +30,13 @@ function App() {
         <div className="min-h-screen bg-bg text-text font-sans">
           <Navbar />
           <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/achievements" element={<AchievementsPage />} />
-            </Routes>
+            <Suspense fallback={null}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/achievements" element={<AchievementsPage />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>

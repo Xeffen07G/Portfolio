@@ -36,7 +36,7 @@ const Hero = () => {
             className="relative w-64 sm:w-72 md:w-80 lg:w-64 xl:w-80 aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 group shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]"
           >
             <img 
-              src="/profile.png" 
+              src="/profile.webp" 
               alt="Sayak Das" 
               className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
             />
