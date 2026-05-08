@@ -4,32 +4,44 @@ import { FiAward, FiExternalLink } from "react-icons/fi";
 
 const certifications = [
   {
-    title: "Neural Networks & Deep Learning",
-    issuer: "DeepLearning.AI / Coursera",
-    date: "2023",
+    title: "Innovex Storm Hackathon",
+    issuer: "SRMIST / SRM Institute of Science and Tech",
+    date: "2024",
     color: "#e0ff00",
-    tags: ["Python", "TensorFlow", "Math"]
+    tags: ["Hackathon", "Team NoXperience", "Innovation"],
+    id: "SRM-24-HACK"
   },
   {
-    title: "Advanced Machine Learning Specialization",
-    issuer: "Stanford / Coursera",
-    date: "2023",
+    title: "NoDevBuild Ideathon Selection",
+    issuer: "BITS Pilani / E-Summit x APOGEE '26",
+    date: "2026",
     color: "#00f0ff",
-    tags: ["Scikit-Learn", "Regression", "Clustering"]
+    tags: ["Ideathon", "BITS Pilani", "Finalist Selection"],
+    id: "BITS-26-IDEA"
   },
   {
-    title: "Robotics: Computational Motion Planning",
-    issuer: "University of Pennsylvania",
+    title: "CXO' Round Table",
+    issuer: "Techno India University / Takshila",
     date: "2024",
     color: "#ff00e0",
-    tags: ["ROS", "Pathfinding", "C++"]
+    tags: ["Leadership", "Innovation & Management", "CXO Forum"],
+    id: "TIU-24-CXO"
   },
   {
-    title: "Full Stack Software Engineering",
-    issuer: "Meta / Coursera",
-    date: "2022",
+    title: "Pitch To Deck Event",
+    issuer: "The Technical Club Takshila",
+    date: "2024",
     color: "#ffffff",
-    tags: ["React", "Node.js", "System Design"]
+    tags: ["Pitching", "Venture Capital", "Startup Logic"],
+    id: "TIU-24-PTD"
+  },
+  {
+    title: "Nestlé E-learning | Resilience",
+    issuer: "Nestlé Nesternship 2026",
+    date: "2026",
+    color: "#e0ff00",
+    tags: ["Professionalism", "Nesternship", "Soft Skills"],
+    id: "NST-26-RES"
   }
 ];
 
@@ -52,7 +64,7 @@ const Certifications = () => {
           THE <span className="text-primary italic">VAULT</span>
         </h2>
         <p className="text-text max-w-xl mt-6 text-lg">
-          A collection of specialized certifications and academic milestones in AI, Robotics, and Software Engineering.
+          A documented record of specialized participations, hackathons, and professional milestones across the tech ecosystem.
         </p>
       </motion.div>
 
@@ -78,7 +90,7 @@ const Certifications = () => {
                 <FiAward className="text-xl text-primary" />
               </div>
               <span className="text-[10px] font-black tracking-[0.2em] text-text-bright/40 uppercase">
-                ID: {202400 + i}
+                {cert.id}
               </span>
             </div>
 
@@ -101,7 +113,7 @@ const Certifications = () => {
               <div className="flex items-center justify-between pt-6 border-t border-white/5">
                 <span className="text-xs font-bold text-text uppercase italic">{cert.date}</span>
                 <button className="flex items-center gap-2 text-[10px] font-black tracking-widest text-text-bright uppercase group-hover:text-primary transition-all">
-                  VIEW RECORD <FiExternalLink />
+                  SECURE RECORD <FiExternalLink />
                 </button>
               </div>
             </div>
