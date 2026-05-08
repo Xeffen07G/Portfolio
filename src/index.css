@@ -14,9 +14,6 @@
 }
 
 @layer base {
-  * {
-    cursor: none;
-  }
 
   html {
     font-family: 'Inter', sans-serif;

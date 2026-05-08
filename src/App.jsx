@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import SmoothScroll from "./components/SmoothScroll";
 import Loader from "./components/Loader";
-import CustomCursor from "./components/CustomCursor";
 import "./index.css";
 
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
@@ -20,7 +19,6 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="noise" />
-      <CustomCursor />
       
       <AnimatePresence mode="wait">
         {isLoading && <Loader finishLoading={() => setIsLoading(false)} />}
