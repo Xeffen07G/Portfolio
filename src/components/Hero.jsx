@@ -15,68 +15,55 @@ const Hero = () => {
       </div>
 
       {/* Main hero content */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 items-end relative z-10 py-8 gap-4 overflow-hidden">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 items-end relative z-10 py-12 gap-8 overflow-hidden">
         {/* Left side - Name */}
-        <div className="lg:col-span-4 pb-16 lg:pb-20">
+        <div className="lg:col-span-5 pb-16 lg:pb-24">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.5, duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-text mb-4 font-medium">
-              👋 Hi, my name is
+            <p className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-text/60 mb-6 font-bold">
+              Engineering <span className="text-primary">/</span> AI Systems
             </p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-text-bright leading-[0.9] tracking-tighter uppercase">
-              <span className="text-primary">S</span>AYAK<br />
+            <h1 className="text-6xl sm:text-7xl md:text-8xl xl:text-9xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+              SAYAK<br />
               DAS
             </h1>
           </motion.div>
         </div>
 
         {/* Center - Portrait */}
-        <div className="lg:col-span-3 flex justify-center relative">
+        <div className="lg:col-span-3 flex justify-center items-end relative px-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-full max-w-[384px] aspect-[3/4] mx-auto lg:ml-auto overflow-hidden rounded-2xl grayscale hover:grayscale-0 transition-all duration-700"
+            className="relative w-full max-w-[340px] aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 group"
           >
             <img 
               src="/hero-portrait.png" 
               alt="Sayak Das" 
-              width="384"
-              height="512"
-              loading="eager"
-              fetchpriority="high"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
             />
-            {/* Decorative grid lines behind portrait */}
-            <div className="absolute -inset-6 z-0 opacity-10">
-              <div className="w-full h-full border border-white/20" 
-                style={{ 
-                  backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)',
-                  backgroundSize: '40px 40px'
-                }} 
-              />
-            </div>
           </motion.div>
         </div>
 
         {/* Right side - Titles */}
-        <div className="lg:col-span-5 pb-16 lg:pb-20 text-right pr-6 md:pr-12">
+        <div className="lg:col-span-4 pb-16 lg:pb-24 text-right">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3, duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <span className="text-primary text-xs font-black tracking-[0.3em]">01</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[5rem] font-black text-text-bright leading-[0.9] tracking-tighter uppercase">
-              DEVELOP<span className="text-primary">ER</span>
+            <span className="text-primary text-[10px] font-black tracking-[0.4em]">SPEC 01</span>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+              DEV<span className="text-primary">EL</span>OPER
             </h2>
             
-            <span className="text-primary text-xs font-black tracking-[0.3em] mt-4 block">02</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[5rem] font-black leading-[0.9] tracking-tighter uppercase" 
-              style={{ WebkitTextStroke: '1.5px #e0ff00', color: 'transparent' }}>
+            <span className="text-primary text-[10px] font-black tracking-[0.4em] mt-8 block">SPEC 02</span>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.85] tracking-tighter uppercase" 
+              style={{ WebkitTextStroke: '1px rgba(224, 255, 0, 0.5)', color: 'transparent' }}>
               & AI/ML
             </h2>
           </motion.div>

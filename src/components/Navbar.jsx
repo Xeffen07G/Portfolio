@@ -34,9 +34,14 @@ const Navbar = () => {
         
         <Link 
           to="/" 
-          className="text-2xl font-black text-text-bright tracking-tighter"
+          className="group flex items-center gap-3"
         >
-          SAYAK<span className="text-primary animate-pulse">.</span>
+          <div className="w-9 h-9 border border-primary/30 rounded flex items-center justify-center group-hover:border-primary transition-all duration-500">
+            <span className="text-text-bright font-black text-xs tracking-tighter group-hover:text-primary">SD</span>
+          </div>
+          <span className="text-xl font-black text-text-bright tracking-tighter uppercase leading-none">
+            SAYAK<span className="text-primary group-hover:animate-pulse">.</span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
