@@ -15,7 +15,7 @@ const Hero = () => {
       </div>
 
       {/* Main hero content */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 items-end relative z-10 py-12 gap-8 overflow-hidden">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 items-end relative z-10 py-12 gap-12 overflow-hidden">
         {/* Left side - Name */}
         <div className="lg:col-span-5 pb-16 lg:pb-24">
           <motion.div
@@ -26,7 +26,7 @@ const Hero = () => {
             <p className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-text/60 mb-6 font-bold">
               Engineering <span className="text-primary">/</span> AI Systems
             </p>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl xl:text-9xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
               SAYAK<br />
               DAS
             </h1>
@@ -34,15 +34,15 @@ const Hero = () => {
         </div>
 
         {/* Center - Portrait */}
-        <div className="lg:col-span-3 flex justify-center items-end relative px-4">
+        <div className="lg:col-span-3 flex justify-center items-end relative px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-full max-w-[340px] aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 group"
+            className="relative w-full max-w-[320px] aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 group shadow-2xl"
           >
             <img 
-              src="/hero-portrait.png" 
+              src="/hero-portrait.png?v=2" 
               alt="Sayak Das" 
               className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
             />
@@ -57,12 +57,12 @@ const Hero = () => {
             transition={{ delay: 3, duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <span className="text-primary text-[10px] font-black tracking-[0.4em]">SPEC 01</span>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
               DEV<span className="text-primary">EL</span>OPER
             </h2>
             
             <span className="text-primary text-[10px] font-black tracking-[0.4em] mt-8 block">SPEC 02</span>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.85] tracking-tighter uppercase" 
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[0.85] tracking-tighter uppercase" 
               style={{ WebkitTextStroke: '1px rgba(224, 255, 0, 0.5)', color: 'transparent' }}>
               & AI/ML
             </h2>
