@@ -15,16 +15,13 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Convert form data to JSON for Web3Forms
+    // Formspree expects JSON or FormData. We use JSON.
     const formData = new FormData(e.target);
-    // USER: Replace the string below with your actual Web3Forms Access Key!
-    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
-
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("https://formspree.io/f/xgodnagb", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,12 +31,12 @@ const Contact = () => {
       });
       const data = await res.json();
       
-      if (data.success) {
+      if (res.ok) {
         setSent(true);
         setTimeout(() => setSent(false), 4000);
         setForm({ name: "", email: "", message: "" });
       } else {
-        alert("Failed to send message: " + data.message);
+        alert("Failed to send message: " + (data.error || "Unknown error"));
       }
     } catch (error) {
       console.error(error);
