@@ -1,8 +1,40 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FiAward, FiExternalLink, FiTarget } from "react-icons/fi";
+import { FiAward, FiExternalLink, FiTarget, FiZap, FiGlobe, FiCpu } from "react-icons/fi";
 
 const certifications = [
+  {
+    title: "TCS Research Project",
+    issuer: "Tata Consultancy Services / e1133",
+    date: "2025",
+    color: "#e0ff00",
+    tags: ["Research", "Collaborative", "TCS"],
+    id: "TCS-25-RES"
+  },
+  {
+    title: "Google Gemini Academy",
+    issuer: "Google / upEducators",
+    date: "2026",
+    color: "#00f0ff",
+    tags: ["GenAI", "Gemini", "AI Mastery"],
+    id: "GOOG-26-GEM"
+  },
+  {
+    title: "AI Launchpad Masterclass",
+    issuer: "Product Space",
+    date: "2026",
+    color: "#ff00e0",
+    tags: ["Product AI", "Masterclass", "AI Strategy"],
+    id: "PS-26-AIL"
+  },
+  {
+    title: "Hult Prize Committee",
+    issuer: "Hult Prize / TIU",
+    date: "2026",
+    color: "#ffffff",
+    tags: ["Leadership", "Global", "Organizing"],
+    id: "HULT-26-ORG"
+  },
   {
     title: "IDEA CHAIN Winner (3rd)",
     issuer: "Takshila Club / Innovation & Management",
@@ -12,10 +44,18 @@ const certifications = [
     id: "TIU-25-WIN"
   },
   {
+    title: "Student AI Masterclass",
+    issuer: "Google for Education / upEducators",
+    date: "2026",
+    color: "#00f0ff",
+    tags: ["AI Implementation", "Google Edu", "Masterclass"],
+    id: "GOOG-26-EDU"
+  },
+  {
     title: "Sandbox CCU Excellence",
     issuer: "Techno India University / Edition #2",
     date: "2025",
-    color: "#00f0ff",
+    color: "#ff00e0",
     tags: ["Excellence", "Top-Performer", "Team GalpoPath"],
     id: "TIU-25-SND"
   },
@@ -23,15 +63,23 @@ const certifications = [
     title: "GDG Devcation Delhi",
     issuer: "Google Developer Groups / IIT Delhi",
     date: "2026",
-    color: "#ff00e0",
+    color: "#ffffff",
     tags: ["Google Devs", "GDG Delhi", "Tech Summit"],
     id: "GDG-26-DEV"
+  },
+  {
+    title: "Climate Fresk Workshop",
+    issuer: "The Rebalance Institute / TIU",
+    date: "2025",
+    color: "#e0ff00",
+    tags: ["Sustainability", "Workshop", "Social Impact"],
+    id: "REB-25-CLM"
   },
   {
     title: "Innovex Storm Hackathon",
     issuer: "SRMIST / SRM Institute of Science and Tech",
     date: "2024",
-    color: "#ffffff",
+    color: "#00f0ff",
     tags: ["Hackathon", "Team NoXperience", "Innovation"],
     id: "SRM-24-HACK"
   },
@@ -39,7 +87,7 @@ const certifications = [
     title: "Hackfest Captain",
     issuer: "GeeksforGeeks Classroom Program",
     date: "2024",
-    color: "#e0ff00",
+    color: "#ff00e0",
     tags: ["Captain", "GFG Hack", "Leadership"],
     id: "GFG-24-CAP"
   },
@@ -47,7 +95,7 @@ const certifications = [
     title: "CXO' Round Table",
     issuer: "Techno India University / Takshila",
     date: "2024",
-    color: "#00f0ff",
+    color: "#ffffff",
     tags: ["Leadership", "Innovation & Management", "CXO Forum"],
     id: "TIU-24-CXO"
   },
@@ -55,7 +103,7 @@ const certifications = [
     title: "THE ESCAPE: IDEATHON",
     issuer: "Takshila Club / Computing Domain",
     date: "2025",
-    color: "#ff00e0",
+    color: "#e0ff00",
     tags: ["Ideathon", "Computing", "Strategy"],
     id: "TIU-25-ESC"
   },
@@ -63,7 +111,7 @@ const certifications = [
     title: "Pitch To Deck Event",
     issuer: "The Technical Club Takshila",
     date: "2024",
-    color: "#ffffff",
+    color: "#00f0ff",
     tags: ["Pitching", "Venture Capital", "Startup Logic"],
     id: "TIU-24-PTD"
   },
@@ -71,7 +119,7 @@ const certifications = [
     title: "Nestlé E-learning | Resilience",
     issuer: "Nestlé Nesternship 2026",
     date: "2026",
-    color: "#e0ff00",
+    color: "#ff00e0",
     tags: ["Professionalism", "Nesternship", "Soft Skills"],
     id: "NST-26-RES"
   }
@@ -81,7 +129,7 @@ const Certifications = () => {
   return (
     <section id="certifications" className="relative py-32 px-6 md:px-12 lg:px-24 bg-bg overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px] -z-10" />
       
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -96,7 +144,7 @@ const Certifications = () => {
           THE <span className="text-primary italic">VAULT</span>
         </h2>
         <p className="text-text max-w-xl mt-6 text-lg">
-          An elite archive of 9 high-impact certifications, winner titles, and leadership roles in the global tech and innovation ecosystem.
+          An elite archive of 15 high-impact certifications, research projects, and global leadership roles.
         </p>
       </motion.div>
 
@@ -107,7 +155,7 @@ const Certifications = () => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.8 }}
+            transition={{ delay: i * 0.03, duration: 0.8 }}
             whileHover={{ y: -10 }}
             className="group relative bg-white/[0.02] border border-white/5 p-6 rounded-2xl overflow-hidden hover:bg-white/[0.04] transition-all duration-500"
           >
@@ -119,8 +167,14 @@ const Certifications = () => {
             
             <div className="flex justify-between items-start mb-8">
               <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
-                {cert.tags.includes("Winner") ? (
+                {cert.tags.includes("Research") ? (
+                  <FiCpu className="text-lg text-primary" />
+                ) : cert.tags.includes("Winner") ? (
                   <FiTarget className="text-lg text-primary" />
+                ) : cert.tags.includes("Leadership") ? (
+                  <FiGlobe className="text-lg text-primary" />
+                ) : cert.tags.includes("Gemini") ? (
+                  <FiZap className="text-lg text-primary" />
                 ) : (
                   <FiAward className="text-lg text-primary" />
                 )}
