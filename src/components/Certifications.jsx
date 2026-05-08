@@ -12,14 +12,6 @@ const certifications = [
     id: "SRM-24-HACK"
   },
   {
-    title: "NoDevBuild Ideathon Selection",
-    issuer: "BITS Pilani / E-Summit x APOGEE '26",
-    date: "2026",
-    color: "#00f0ff",
-    tags: ["Ideathon", "BITS Pilani", "Finalist Selection"],
-    id: "BITS-26-IDEA"
-  },
-  {
     title: "CXO' Round Table",
     issuer: "Techno India University / Takshila",
     date: "2024",
