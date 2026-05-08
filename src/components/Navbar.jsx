@@ -28,47 +28,39 @@ const Navbar = () => {
         scrolled ? "py-4" : "py-8"
       }`}
     >
-      <div className={`max-w-6xl mx-auto px-6 h-16 flex items-center justify-between rounded-full transition-all duration-500 ${
-        scrolled ? "bg-black/80 backdrop-blur-xl border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)]" : "bg-transparent"
-      }`}>
-        
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+        {/* Simplified Logo */}
         <Link 
           to="/" 
-          className="group flex items-center gap-3"
+          className="text-2xl font-black text-text-bright tracking-tighter uppercase"
         >
-          <div className="w-9 h-9 border border-primary/30 rounded flex items-center justify-center group-hover:border-primary transition-all duration-500">
-            <span className="text-primary font-black text-xs tracking-tighter">SD</span>
-          </div>
-          <span className="text-xl font-black text-text-bright tracking-tighter uppercase leading-none">
-            SAYAK<span className="text-primary group-hover:animate-pulse">.</span>
-          </span>
+          SAYAK<span className="text-primary">.</span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:block">
-          <ul className="flex items-center gap-8">
+        <nav className="hidden lg:block">
+          <ul className="flex items-center gap-12">
             {navItems.map((item) => (
               <li key={item.name}>
                 <Link
                   to={item.href}
-                  className={`text-xs uppercase tracking-[0.2em] font-bold transition-all hover:text-primary ${
-                    location.pathname === item.href ? "text-primary" : "text-text"
+                  className={`text-[10px] uppercase tracking-[0.4em] font-bold transition-all hover:text-primary ${
+                    location.pathname === item.href ? "text-primary" : "text-text/50"
                   }`}
                 >
                   {item.name}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                to="/#contact"
-                className="px-6 py-2 rounded-full bg-primary text-bg text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all"
-              >
-                Let's Talk
-              </Link>
-            </li>
           </ul>
         </nav>
+
+        <Link
+          to="/#contact"
+          className="px-8 py-2.5 rounded-full bg-primary text-bg text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
+        >
+          Let's Talk
+        </Link>
 
         {/* Mobile Toggle */}
         <button
