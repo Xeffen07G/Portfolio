@@ -38,10 +38,10 @@ const Manifesto = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] bg-bg">
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center pt-12">
+    <section ref={containerRef} className="relative h-[130vh] md:h-[300vh] bg-bg pt-0 md:pt-36">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center pt-4 md:pt-12">
         {/* Section header */}
-        <div className="px-6 md:px-12 lg:px-24 mb-12">
+        <div className="px-6 md:px-12 lg:px-24 mb-6 md:mb-12">
           <motion.h2 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}

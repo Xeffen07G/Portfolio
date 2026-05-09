@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 const About = () => {
   return (
-    <section id="about" className="py-32 px-6 md:px-12 relative overflow-hidden">
+    <section id="about" className="py-16 md:py-32 px-6 md:px-12 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
           

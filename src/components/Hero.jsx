@@ -25,7 +25,7 @@ const Hero = () => {
   }, [position, springX, springY]);
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 md:px-12 lg:px-24 pt-24 pb-24 bg-bg">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 md:px-12 lg:px-24 pt-20 md:pt-24 pb-12 md:pb-24 bg-bg">
       {/* Background Studio Spotlight */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40 transition-opacity duration-1000"
