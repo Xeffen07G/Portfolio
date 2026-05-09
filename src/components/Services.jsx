@@ -174,8 +174,8 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* IoT Network Animation */
-const IoTNetwork = () => {
+/* Robotic System Animation */
+const RoboticSystem = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -194,19 +194,8 @@ const IoTNetwork = () => {
     };
     resize();
 
-    const nodes = [];
-    const rows = 6;
-    const cols = 6;
-    
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < cols; j++) {
-        nodes.push({
-          x: 0, y: 0,
-          ix: j, iy: i,
-          pulse: 0,
-        });
-      }
-    }
+    const target = { x: 200, y: 200 };
+    const arm = { x: 40, y: 360, len1: 150, len2: 150 };
 
     const draw = () => {
       const rect = canvas.getBoundingClientRect();
@@ -214,59 +203,77 @@ const IoTNetwork = () => {
       const h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      const padding = 60;
-      const gw = w - padding * 2;
-      const gh = h - padding * 2;
-      const cellW = gw / (cols - 1);
-      const cellH = gh / (rows - 1);
+      // Set base position
+      arm.y = h - 40;
 
-      ctx.lineWidth = 1;
-      nodes.forEach((n, i) => {
-        n.x = padding + n.ix * cellW;
-        n.y = padding + n.iy * cellH;
-
-        if (Math.random() > 0.99) n.pulse = 1;
-        n.pulse *= 0.94;
-
-        ctx.strokeStyle = "rgba(255,255,255,0.05)";
-        if (n.ix < cols - 1) {
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(n.x + cellW, n.y);
-          ctx.stroke();
-        }
-        if (n.iy < rows - 1) {
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(n.x, n.y + cellH);
-          ctx.stroke();
-        }
-
-        if (n.pulse > 0.1) {
-          ctx.strokeStyle = `rgba(224, 255, 0, ${n.pulse * 0.5})`;
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, n.pulse * 25, 0, Math.PI * 2);
-          ctx.stroke();
-        }
-      });
-
-      if (frame % 20 === 0) {
-        const start = nodes[Math.floor(Math.random() * nodes.length)];
-        const neighbors = nodes.filter(nn => 
-          (Math.abs(nn.ix - start.ix) === 1 && nn.iy === start.iy) || 
-          (Math.abs(nn.iy - start.iy) === 1 && nn.ix === start.ix)
-        );
-        if (neighbors.length > 0) {
-          const end = neighbors[Math.floor(Math.random() * neighbors.length)];
-          start.pulse = 1;
-          end.pulse = 1;
-        }
+      // Move target
+      if (frame % 120 === 0) {
+        target.x = 100 + Math.random() * (w - 200);
+        target.y = 100 + Math.random() * (h - 200);
       }
 
-      nodes.forEach(n => {
-        ctx.fillStyle = n.pulse > 0.2 ? `rgba(224, 255, 0, ${n.pulse})` : "rgba(255,255,255,0.15)";
-        ctx.fillRect(n.x - 3, n.y - 3, 6, 6);
-      });
+      // Draw Grid (Technical background)
+      ctx.strokeStyle = "rgba(255,255,255,0.03)";
+      ctx.lineWidth = 1;
+      for(let i=0; i<w; i+=40) {
+        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
+      }
+      for(let i=0; i<h; i+=40) {
+        ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke();
+      }
+
+      // Simple Inverse Kinematics (Approximation for visual)
+      const dx = target.x - arm.x;
+      const dy = target.y - arm.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const angle = Math.atan2(dy, dx);
+      
+      const jointX = arm.x + Math.cos(angle - 0.5) * arm.len1;
+      const jointY = arm.y + Math.sin(angle - 0.5) * arm.len1;
+
+      // Draw Arm
+      ctx.lineWidth = 4;
+      ctx.lineCap = "round";
+      ctx.strokeStyle = "rgba(224, 255, 0, 0.4)";
+      
+      // Segment 1
+      ctx.beginPath();
+      ctx.moveTo(arm.x, arm.y);
+      ctx.lineTo(jointX, jointY);
+      ctx.stroke();
+
+      // Segment 2
+      ctx.strokeStyle = "#e0ff00";
+      ctx.beginPath();
+      ctx.moveTo(jointX, jointY);
+      ctx.lineTo(target.x, target.y);
+      ctx.stroke();
+
+      // Joints
+      ctx.fillStyle = "#e0ff00";
+      ctx.beginPath(); ctx.arc(arm.x, arm.y, 6, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(jointX, jointY, 5, 0, Math.PI*2); ctx.fill();
+
+      // Gripper / Head
+      ctx.save();
+      ctx.translate(target.x, target.y);
+      ctx.rotate(angle);
+      ctx.strokeRect(-10, -10, 20, 20);
+      ctx.restore();
+
+      // Scanning Pulse (LIDAR effect)
+      ctx.strokeStyle = `rgba(224, 255, 0, ${0.1 + Math.sin(frame * 0.05) * 0.1})`;
+      ctx.beginPath();
+      ctx.arc(target.x, target.y, 40 + Math.sin(frame * 0.1) * 10, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Data "Ping"
+      if (frame % 60 < 20) {
+        ctx.fillStyle = `rgba(224, 255, 0, ${1 - (frame % 60)/20})`;
+        ctx.beginPath();
+        ctx.arc(target.x, target.y, (frame % 60) * 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
@@ -280,7 +287,7 @@ const IoTNetwork = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
+  return <canvas ref={canvasRef} className="w-full h-full opacity-90" />;
 };
 
 const Services = () => {
@@ -318,7 +325,7 @@ const Services = () => {
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
-              {i === 2 && <IoTNetwork />}
+              {i === 2 && <RoboticSystem />}
             </motion.div>
           </div>
         </div>
