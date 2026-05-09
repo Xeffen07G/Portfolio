@@ -74,7 +74,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 px-4 relative">
+    <section id="contact" className="pt-36 pb-24 px-4 relative">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <motion.div
