@@ -174,117 +174,37 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* Friendly Bot Animation */
-const FriendlyBot = () => {
-  const canvasRef = useRef(null);
-  const animRef = useRef(null);
+import robotImg from "../assets/robot.png";
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let frame = 0;
-
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-
-    const draw = () => {
-      const rect = canvas.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
-      ctx.clearRect(0, 0, w, h);
-
-      const cx = w * 0.5;
-      const cy = h * 0.5 + Math.sin(frame * 0.03) * 8;
-
-      // Draw Blueprint Grid
-      ctx.strokeStyle = "rgba(255,255,255,0.02)";
-      ctx.lineWidth = 1;
-      for(let i=0; i<w; i+=40) {
-        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
-      }
-
-      // 1. Robot Head Shell
-      ctx.save();
-      ctx.shadowBlur = 30;
-      ctx.shadowColor = "rgba(224, 255, 0, 0.1)";
+/* Boutique Robot Image Component */
+const BoutiqueRobot = () => {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Background glow to make it pop */}
+      <div className="absolute w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
       
-      ctx.strokeStyle = "rgba(224, 255, 0, 0.3)";
-      ctx.lineWidth = 2;
-      // Drawing a rounded rectangle for head
-      const r = 40;
-      const hw = 100;
-      const hh = 80;
-      ctx.beginPath();
-      ctx.moveTo(cx - hw + r, cy - hh);
-      ctx.lineTo(cx + hw - r, cy - hh);
-      ctx.quadraticCurveTo(cx + hw, cy - hh, cx + hw, cy - hh + r);
-      ctx.lineTo(cx + hw, cy + hh - r);
-      ctx.quadraticCurveTo(cx + hw, cy + hh, cx + hw - r, cy + hh);
-      ctx.lineTo(cx - hw + r, cy + hh);
-      ctx.quadraticCurveTo(cx - hw, cy + hh, cx - hw, cy + hh - r);
-      ctx.lineTo(cx - hw, cy - hh + r);
-      ctx.quadraticCurveTo(cx - hw, cy - hh, cx - hw + r, cy - hh);
-      ctx.stroke();
-      ctx.restore();
-
-      // 2. Face Plate (The "Screen")
-      ctx.fillStyle = "rgba(224, 255, 0, 0.03)";
-      ctx.beginPath();
-      ctx.roundRect(cx - 85, cy - 65, 170, 130, 30);
-      ctx.fill();
-      ctx.strokeStyle = "rgba(224, 255, 0, 0.1)";
-      ctx.stroke();
-
-      // 3. Friendly Eyes (Horizontal Pills)
-      const blink = Math.sin(frame * 0.04) > 0.98 ? 0.1 : 1;
-      ctx.fillStyle = "#e0ff00";
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = "#e0ff00";
+      <motion.img
+        src={robotImg}
+        alt="Boutique Robot"
+        animate={{ 
+          y: [0, -15, 0],
+          rotate: [-1, 1, -1]
+        }}
+        transition={{ 
+          duration: 6, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        className="w-[280px] md:w-[350px] relative z-10 drop-shadow-[0_0_20px_rgba(224,255,0,0.15)]"
+      />
       
-      // Left Eye
-      ctx.beginPath();
-      ctx.roundRect(cx - 50, cy - 15, 30, 25 * blink, 12);
-      ctx.fill();
-      
-      // Right Eye
-      ctx.beginPath();
-      ctx.roundRect(cx + 20, cy - 15, 30, 25 * blink, 12);
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
-      // 4. Tech Details
-      ctx.strokeStyle = "#e0ff00";
-      ctx.lineWidth = 1;
-      // Antenna
-      ctx.beginPath();
-      ctx.moveTo(cx, cy - hh);
-      ctx.lineTo(cx, cy - hh - 30);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(cx, cy - hh - 35, 3, 0, Math.PI * 2);
-      ctx.fillStyle = frame % 40 < 20 ? "#e0ff00" : "transparent";
-      ctx.fill();
-
-      frame++;
-      animRef.current = requestAnimationFrame(draw);
-    };
-
-    draw();
-    window.addEventListener("resize", resize);
-    return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="w-full h-full opacity-90" />;
+      {/* Technical UI overlays to keep the blueprint feel */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute top-10 left-10 w-20 h-20 border-l border-t border-primary" />
+        <div className="absolute bottom-10 right-10 w-20 h-20 border-r border-b border-primary" />
+      </div>
+    </div>
+  );
 };
 
 const Services = () => {
@@ -322,7 +242,7 @@ const Services = () => {
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
-              {i === 2 && <FriendlyBot />}
+              {i === 2 && <BoutiqueRobot />}
             </motion.div>
           </div>
         </div>
