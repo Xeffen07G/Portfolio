@@ -111,12 +111,32 @@ const Hero = () => {
         transition={{ delay: 1, duration: 1 }}
         className="mt-12 flex flex-col sm:flex-row justify-between items-end gap-8 pt-8 border-t border-white/5"
       >
-        <div className="flex flex-col gap-4">
-          <span className="text-[10px] tracking-[0.4em] uppercase text-text/40 font-bold">Current Status</span>
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_10px_#e0ff00]" />
-            <span className="text-sm text-text-bright font-bold uppercase tracking-widest">Available for Projects</span>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <span className="text-[10px] tracking-[0.4em] uppercase text-text/40 font-bold">Current Status</span>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_10px_#e0ff00]" />
+              <span className="text-sm text-text-bright font-bold uppercase tracking-widest">Available for Projects</span>
+            </div>
           </div>
+          
+          {/* Scroll Indicator */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
+            className="flex items-center gap-4"
+          >
+            <span className="text-[9px] tracking-[0.4em] text-text/30 uppercase font-black">Scroll</span>
+            <motion.div
+              animate={{ y: [0, 5, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-primary/50">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+              </svg>
+            </motion.div>
+          </motion.div>
         </div>
 
         <div className="flex gap-12">
