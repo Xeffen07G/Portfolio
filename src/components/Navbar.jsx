@@ -44,7 +44,7 @@ const Navbar = () => {
       }`}
     >
       <div 
-        className={`max-w-2xl w-full h-12 px-8 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
+        className={`max-w-3xl w-full h-14 px-10 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
           scrolled 
             ? "bg-bg/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]" 
             : "bg-transparent border border-transparent"
@@ -60,7 +60,7 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:block">
-          <ul className="flex items-center gap-10">
+          <ul className="flex items-center gap-12">
             {navItems.map((item) => (
               <li key={item.name}>
                 <Link
@@ -85,7 +85,7 @@ const Navbar = () => {
               window.history.pushState(null, "", "/#contact");
             }
           }}
-          className="px-6 py-2 rounded-full bg-primary text-bg text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
+          className="px-6 py-2.5 rounded-full bg-primary text-bg text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
         >
           Let's Talk
         </Link>
