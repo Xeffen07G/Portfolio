@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
 
         <a
-          href="mailto:sayak@example.com"
+          href="mailto:sayakdas.slsn8cd@gmail.com"
           className="w-20 h-20 md:w-28 md:h-28 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-500 group mt-12 md:mt-0"
         >
           <FiArrowUpRight className="text-2xl md:text-3xl text-white group-hover:text-bg transition-colors" />
@@ -36,8 +36,8 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 border-t border-white/5 pt-12">
         <div>
           <p className="text-[10px] tracking-[0.4em] uppercase text-text font-bold mb-3">Email</p>
-          <a href="mailto:sayak@example.com" className="text-lg font-bold text-text-bright hover:text-primary transition-colors">
-            sayak@example.com
+          <a href="mailto:sayakdas.slsn8cd@gmail.com" className="text-lg font-bold text-text-bright hover:text-primary transition-colors">
+            sayakdas.slsn8cd@gmail.com
           </a>
         </div>
         <div>
@@ -57,11 +57,10 @@ const Footer = () => {
         </p>
         <div className="flex items-center gap-10">
           <Link to="/achievements" className="text-[10px] tracking-[0.3em] uppercase text-primary font-bold hover:gap-2 transition-all">Achievements</Link>
-          {['Github', 'LinkedIn', 'Instagram', 'Twitter'].map((social) => (
-            <a key={social} href="#" className="text-[10px] tracking-[0.3em] uppercase text-text font-bold hover:text-primary transition-colors">
-              {social}
-            </a>
-          ))}
+          <a href="https://github.com/Xeffen07G" target="_blank" rel="noreferrer" className="text-[10px] tracking-[0.3em] uppercase text-text font-bold hover:text-primary transition-colors">Github</a>
+          <a href="https://www.linkedin.com/in/sayak-das-460157287" target="_blank" rel="noreferrer" className="text-[10px] tracking-[0.3em] uppercase text-text font-bold hover:text-primary transition-colors">LinkedIn</a>
+          <a href="#" className="text-[10px] tracking-[0.3em] uppercase text-text font-bold hover:text-primary transition-colors">Instagram</a>
+          <a href="#" className="text-[10px] tracking-[0.3em] uppercase text-text font-bold hover:text-primary transition-colors">Twitter</a>
         </div>
       </div>
     </footer>
