@@ -288,41 +288,46 @@ const ParticleBot = () => {
 
 const Services = () => {
   return (
-    <section id="services" className="relative py-20 bg-bg">
+    <section id="services" className="relative py-12 md:py-20 bg-bg">
       {services.map((svc, i) => (
-        <div key={i} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-white/5 last:border-b">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+        <div key={i} className="py-20 md:py-32 px-6 md:px-12 lg:px-24 border-t border-white/5 last:border-b">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center max-w-7xl mx-auto">
             {/* Text side */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: i === 1 ? 50 : -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-              className={i === 1 ? "lg:order-2" : ""}
+              className={`flex flex-col justify-center ${i === 1 ? "lg:order-2" : ""}`}
             >
-              <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-8 block font-sans">
+              <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-4 block font-sans">
                 {svc.label}
               </span>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-6">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.9] tracking-tighter uppercase mb-8">
                 {svc.title}<br />
                 <span className="text-primary" style={{ WebkitTextStroke: i === 1 ? '1px #e0ff00' : 'none', color: i === 1 ? 'transparent' : '#e0ff00' }}>{svc.titleAccent}</span>
               </h2>
-              <p className="text-text text-lg md:text-xl max-w-lg mt-10 leading-relaxed font-medium opacity-80">
+              <div className="w-12 h-[1px] bg-primary/30 mb-8" />
+              <p className="text-text/70 text-lg md:text-xl max-w-lg leading-relaxed font-medium">
                 {svc.desc}
               </p>
             </motion.div>
 
             {/* Visual side */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className={`h-[300px] md:h-[450px] relative flex items-center justify-center overflow-hidden ${i === 1 ? "lg:order-1" : ""}`}
+              className={`h-[350px] md:h-[500px] w-full relative flex items-center justify-center overflow-hidden bg-white/[0.02] rounded-3xl border border-white/5 ${i === 1 ? "lg:order-1" : ""}`}
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
               {i === 2 && <ParticleBot />}
+              
+              {/* Corner Accents */}
+              <div className="absolute top-6 left-6 w-8 h-8 border-l border-t border-primary/20" />
+              <div className="absolute bottom-6 right-6 w-8 h-8 border-r border-b border-primary/20" />
             </motion.div>
           </div>
         </div>
