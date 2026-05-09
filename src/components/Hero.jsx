@@ -120,9 +120,19 @@ const Hero = () => {
         </div>
 
         <div className="flex gap-12">
-          {['LinkedIn', 'Github', 'Instagram'].map((social) => (
-            <a key={social} href="#" className="text-[10px] tracking-[0.4em] uppercase text-text/60 font-bold hover:text-primary transition-colors">
-              {social}
+          {[
+            { name: 'LinkedIn', url: 'https://linkedin.com/in/sayakdas' },
+            { name: 'Github', url: 'https://github.com/Xeffen07G' },
+            { name: 'Instagram', url: 'https://instagram.com/sayak.das' }
+          ].map((social) => (
+            <a 
+              key={social.name} 
+              href={social.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[10px] tracking-[0.4em] uppercase text-text/60 font-bold hover:text-primary transition-colors"
+            >
+              {social.name}
             </a>
           ))}
         </div>
