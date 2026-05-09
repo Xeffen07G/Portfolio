@@ -174,7 +174,7 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* Particle Bot Animation for Robotics */
+/* Blueprint Bot Animation for Robotics */
 const ParticleBot = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -195,32 +195,14 @@ const ParticleBot = () => {
     resize();
 
     const particles = [];
-    const count = 1500; // Increased density
-
-    // Define the Robot Head shape bounds (Scaled Up)
-    const isInsideBot = (x, y) => {
-      const head = (x > -90 && x < 90 && y > -70 && y < 70);
-      const top = (Math.sqrt(x*x + (y+60)**2) < 90 && y < -60);
-      const leftEar = (x > -120 && x < -90 && y > -30 && y < 30);
-      const rightEar = (x > 90 && x < 120 && y > -30 && y < 30);
-      return head || top || leftEar || rightEar;
-    };
+    const count = 600;
 
     for (let i = 0; i < count; i++) {
-      let px, py;
-      do {
-        px = (Math.random() - 0.5) * 300;
-        py = (Math.random() - 0.5) * 300;
-      } while (!isInsideBot(px, py));
-
-      particles.push({ 
-        baseX: px, 
-        baseY: py, 
-        x: px, 
-        y: py, 
-        size: 1 + Math.random() * 2, // Larger particles
-        speed: 0.01 + Math.random() * 0.015,
-        offset: Math.random() * Math.PI * 2
+      particles.push({
+        angle: Math.random() * Math.PI * 2,
+        radius: 40 + Math.random() * 60,
+        speed: 0.01 + Math.random() * 0.02,
+        size: 0.5 + Math.random() * 1.5
       });
     }
 
@@ -233,29 +215,53 @@ const ParticleBot = () => {
       const cx = w * 0.5;
       const cy = h * 0.5;
 
-      particles.forEach((p) => {
-        p.x = cx + p.baseX + Math.sin(frame * p.speed + p.offset) * 4;
-        p.y = cy + p.baseY + Math.cos(frame * p.speed + p.offset) * 4;
+      // 1. Draw Blueprint Outline (The "Understandable" Shape)
+      ctx.strokeStyle = "rgba(224, 255, 0, 0.25)";
+      ctx.lineWidth = 1.5;
+      
+      // Main Head Outline
+      ctx.beginPath();
+      ctx.roundRect(cx - 80, cy - 70, 160, 130, 40);
+      ctx.stroke();
 
-        const isEye = (Math.abs(p.baseX - 45) < 18 && Math.abs(p.baseY + 15) < 12) || 
-                      (Math.abs(p.baseX + 45) < 18 && Math.abs(p.baseY + 15) < 12);
+      // Side Sensors / "Ears"
+      ctx.beginPath();
+      ctx.roundRect(cx - 100, cy - 25, 20, 50, 5);
+      ctx.roundRect(cx + 80, cy - 25, 20, 50, 5);
+      ctx.stroke();
 
-        // Brighter alpha values
-        const alpha = isEye ? 0.9 + Math.sin(frame * 0.1) * 0.1 : 0.3 + Math.sin(frame * 0.03 + p.offset) * 0.15;
-        const size = isEye ? p.size * 2.5 : p.size;
-
+      // 2. Draw Particles (Internal Energy)
+      particles.forEach((p, i) => {
+        const x = cx + Math.cos(p.angle + frame * p.speed) * p.radius;
+        const y = cy + Math.sin(p.angle + frame * p.speed * 0.5) * (p.radius * 0.6);
+        
+        ctx.fillStyle = `rgba(224, 255, 0, ${0.1 + Math.random() * 0.2})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(224, 255, 0, ${alpha})`;
+        ctx.arc(x, y, p.size, 0, Math.PI * 2);
         ctx.fill();
-
-        if (isEye) {
-          ctx.shadowBlur = 15;
-          ctx.shadowColor = "#e0ff00";
-          ctx.fill();
-          ctx.shadowBlur = 0;
-        }
       });
+
+      // 3. Optical Units (The Eyes)
+      const blink = Math.sin(frame * 0.04) > 0.98 ? 0.1 : 1;
+      ctx.fillStyle = "#e0ff00";
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = "#e0ff00";
+      
+      // Left Lens
+      ctx.beginPath();
+      ctx.arc(cx - 35, cy - 5, 12, 0, Math.PI * 2);
+      ctx.scale(1, blink); // Blinking effect
+      ctx.fill();
+      ctx.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
+
+      // Right Lens
+      ctx.beginPath();
+      ctx.arc(cx + 35, cy - 5, 12, 0, Math.PI * 2);
+      ctx.scale(1, blink);
+      ctx.fill();
+      ctx.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
+      
+      ctx.shadowBlur = 0;
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
