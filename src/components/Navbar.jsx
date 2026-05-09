@@ -25,9 +25,9 @@ const Navbar = () => {
 
   return (
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-center pointer-events-none">
+    <header className="fixed top-0 left-0 w-full z-50 px-6 py-2 flex justify-center pointer-events-none">
       <div 
-        className={`max-w-4xl w-full h-12 px-6 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
+        className={`max-w-4xl w-full h-10 px-6 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
           scrolled 
             ? "bg-bg/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]" 
             : "bg-transparent border border-transparent"
@@ -36,7 +36,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link 
           to="/" 
-          className="text-xl font-black text-text-bright tracking-tighter uppercase"
+          className="text-lg font-black text-text-bright tracking-tighter uppercase"
         >
           SAYAK<span className="text-primary">.</span>
         </Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
               window.history.pushState(null, "", "/#contact");
             }
           }}
-          className="px-6 py-2 rounded-full bg-primary text-bg text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
+          className="px-6 py-1.5 rounded-full bg-primary text-bg text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
         >
           Let's Talk
         </Link>
