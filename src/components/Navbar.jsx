@@ -44,7 +44,7 @@ const Navbar = () => {
       }`}
     >
       <div 
-        className={`max-w-3xl w-full h-14 px-10 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
+        className={`max-w-[95%] w-full h-14 px-8 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
           scrolled 
             ? "bg-bg/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]" 
             : "bg-transparent border border-transparent"
