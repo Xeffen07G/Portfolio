@@ -41,7 +41,7 @@ const Hero = () => {
       {/* Main hero content */}
       <div className="flex-1 flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-3 items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
         {/* Center - Portrait - order-1 on mobile, lg:order-2 on desktop */}
-        <div className="relative z-20 cursor-none flex justify-center order-1 lg:order-2">
+        <div className="relative z-20 flex justify-center order-1 lg:order-2">
           <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
