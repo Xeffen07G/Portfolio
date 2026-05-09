@@ -277,7 +277,7 @@ const Certifications = () => {
                   <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">
                     {selectedCert.id}
                   </span>
-                  <h3 className="text-3xl md:text-4xl font-black text-text-bright tracking-tight uppercase leading-none mb-6">
+                  <h3 className="text-2xl md:text-3xl font-black text-text-bright tracking-tight uppercase leading-[1.1] mb-6 break-words overflow-hidden">
                     {selectedCert.title}
                   </h3>
                   <div className="space-y-4 mb-8">
