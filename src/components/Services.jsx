@@ -22,8 +22,8 @@ const services = [
   },
 ];
 
-/* Particle sphere using canvas */
-const ParticleSphere = () => {
+/* Neural Network Animation for AI */
+const NeuralNetwork = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -42,13 +42,15 @@ const ParticleSphere = () => {
     };
     resize();
 
-    const particles = [];
-    const count = 800;
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      const r = 120 + Math.random() * 15;
-      particles.push({ theta, phi, r, speed: 0.001 + Math.random() * 0.002 });
+    const nodes = [];
+    for (let i = 0; i < 40; i++) {
+      nodes.push({
+        x: Math.random() * 400,
+        y: Math.random() * 400,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        pulse: 0
+      });
     }
 
     const draw = () => {
@@ -57,21 +59,38 @@ const ParticleSphere = () => {
       const h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      const cx = w * 0.5;
-      const cy = h * 0.5;
+      nodes.forEach((n, i) => {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
 
-      particles.forEach((p) => {
-        p.theta += p.speed;
-        const x = cx + p.r * Math.sin(p.phi) * Math.cos(p.theta + frame * 0.002);
-        const y = cy + p.r * Math.cos(p.phi);
-        const z = p.r * Math.sin(p.phi) * Math.sin(p.theta + frame * 0.002);
-        const scale = (z + p.r) / (2 * p.r);
-        const alpha = 0.1 + scale * 0.5;
-        const size = 0.4 + scale * 1.5;
+        n.pulse *= 0.95;
+        if (Math.random() > 0.98) n.pulse = 1;
 
+        // Draw connections
+        nodes.forEach((n2, j) => {
+          if (i === j) return;
+          const dist = Math.sqrt((n.x - n2.x)**2 + (n.y - n2.y)**2);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(n2.x, n2.y);
+            ctx.strokeStyle = `rgba(224, 255, 0, ${(1 - dist/100) * 0.2})`;
+            ctx.stroke();
+            
+            if (n.pulse > 0.8) {
+              ctx.beginPath();
+              ctx.arc(n.x + (n2.x - n.x) * (1-n.pulse), n.y + (n2.y - n.y) * (1-n.pulse), 3, 0, Math.PI * 2);
+              ctx.fillStyle = "#e0ff00";
+              ctx.fill();
+            }
+          }
+        });
+
+        ctx.fillStyle = n.pulse > 0.5 ? "#e0ff00" : "rgba(255,255,255,0.2)";
         ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(224, 255, 0, ${alpha})`;
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -87,79 +106,93 @@ const ParticleSphere = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="w-full h-full" />;
+  return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-const Services = () => {
-  return (
-    <section id="services" className="relative py-20 bg-bg">
-      {services.map((svc, i) => (
-        <div key={i} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-white/5 last:border-b">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-            {/* Text side */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-8 block font-sans">
-                {svc.label}
-              </span>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-6">
-                {svc.title}<br />
-                <span className="text-primary" style={{ WebkitTextStroke: i === 1 ? '1px #e0ff00' : 'none', color: i === 1 ? 'transparent' : '#e0ff00' }}>{svc.titleAccent}</span>
-              </h2>
-              <p className="text-text text-lg md:text-xl max-w-lg mt-10 leading-relaxed font-medium opacity-80">
-                {svc.desc}
-              </p>
-            </motion.div>
+/* Data Flow Architecture for Full-Stack */
+const DataArchitecture = () => {
+  const canvasRef = useRef(null);
+  const animRef = useRef(null);
 
-            {/* Visual side */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="h-[300px] md:h-[450px] relative flex items-center justify-center overflow-hidden"
-            >
-              {i === 0 && <ParticleSphere />}
-              
-              {i === 1 && (
-                <div className="relative w-64 h-64 md:w-80 md:h-80">
-                  {/* Rotating System Core */}
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 border-[1px] border-primary/20 rounded-full border-dashed"
-                  />
-                  <motion.div 
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-4 border-[1px] border-white/5 rounded-full border-dashed"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 md:w-24 md:h-24 bg-primary/10 rounded-full blur-2xl animate-pulse" />
-                    <div className="w-4 h-4 bg-primary rounded-full shadow-[0_0_20px_#e0ff00]" />
-                  </div>
-                  {/* Floating data bits */}
-                  {[0, 60, 120, 180, 240, 300].map((deg) => (
-                    <motion.div
-                      key={deg}
-                      animate={{ 
-                        opacity: [0.2, 1, 0.2],
-                        scale: [1, 1.2, 1]
-                      }}
-                      transition={{ duration: 3, repeat: Infinity, delay: deg/60 }}
-                      className="absolute top-1/2 left-1/2 w-2 h-2 bg-primary/40 rounded-full"
-                      style={{ 
-                        transform: `rotate(${deg}deg) translate(120px) rotate(-${deg}deg)` 
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-              
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let frame = 0;
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+
+    const packets = [];
+
+    const draw = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const layers = [h * 0.2, h * 0.5, h * 0.8];
+      layers.forEach((ly, i) => {
+        ctx.strokeStyle = "rgba(255,255,255,0.08)";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(40, ly);
+        ctx.lineTo(w - 40, ly);
+        ctx.stroke();
+      });
+
+      if (frame % 12 === 0) {
+        packets.push({
+          x: 60 + Math.random() * (w - 120),
+          y: layers[0],
+          targetY: layers[1],
+          stage: 0,
+          speed: 3 + Math.random() * 2
+        });
+      }
+
+      packets.forEach((p, i) => {
+        p.y += p.speed;
+        
+        if (p.y >= p.targetY) {
+          if (p.stage === 0) {
+            p.stage = 1;
+            p.targetY = layers[2];
+          } else {
+            packets.splice(i, 1);
+            return;
+          }
+        }
+
+        ctx.fillStyle = "#e0ff00";
+        ctx.fillRect(p.x - 1, p.y - 6, 2, 12);
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "#e0ff00";
+        ctx.fillRect(p.x - 1, p.y - 6, 2, 12);
+        ctx.shadowBlur = 0;
+      });
+
+      frame++;
+      animRef.current = requestAnimationFrame(draw);
+    };
+
+    draw();
+    window.addEventListener("resize", resize);
+    return () => {
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
+};
+
 /* IoT Network Animation */
 const IoTNetwork = () => {
   const canvasRef = useRef(null);
@@ -187,7 +220,7 @@ const IoTNetwork = () => {
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < cols; j++) {
         nodes.push({
-          x: 0, y: 0, // set in draw
+          x: 0, y: 0,
           ix: j, iy: i,
           pulse: 0,
         });
@@ -200,24 +233,21 @@ const IoTNetwork = () => {
       const h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      const padding = 40;
+      const padding = 60;
       const gw = w - padding * 2;
       const gh = h - padding * 2;
       const cellW = gw / (cols - 1);
       const cellH = gh / (rows - 1);
 
-      // Draw connections
       ctx.lineWidth = 1;
       nodes.forEach((n, i) => {
         n.x = padding + n.ix * cellW;
         n.y = padding + n.iy * cellH;
 
-        // Random signals
         if (Math.random() > 0.99) n.pulse = 1;
-        n.pulse *= 0.95;
+        n.pulse *= 0.94;
 
-        // Draw grid lines (static)
-        ctx.strokeStyle = "rgba(255,255,255,0.03)";
+        ctx.strokeStyle = "rgba(255,255,255,0.05)";
         if (n.ix < cols - 1) {
           ctx.beginPath();
           ctx.moveTo(n.x, n.y);
@@ -231,16 +261,14 @@ const IoTNetwork = () => {
           ctx.stroke();
         }
 
-        // Draw pulses (active signals)
         if (n.pulse > 0.1) {
-          ctx.strokeStyle = `rgba(224, 255, 0, ${n.pulse * 0.3})`;
+          ctx.strokeStyle = `rgba(224, 255, 0, ${n.pulse * 0.5})`;
           ctx.beginPath();
-          ctx.arc(n.x, n.y, n.pulse * 20, 0, Math.PI * 2);
+          ctx.arc(n.x, n.y, n.pulse * 25, 0, Math.PI * 2);
           ctx.stroke();
         }
       });
 
-      // Draw data signals traveling between nodes
       if (frame % 20 === 0) {
         const start = nodes[Math.floor(Math.random() * nodes.length)];
         const neighbors = nodes.filter(nn => 
@@ -254,10 +282,9 @@ const IoTNetwork = () => {
         }
       }
 
-      // Draw nodes
       nodes.forEach(n => {
-        ctx.fillStyle = n.pulse > 0.2 ? `rgba(224, 255, 0, ${n.pulse})` : "rgba(255,255,255,0.1)";
-        ctx.fillRect(n.x - 2, n.y - 2, 4, 4);
+        ctx.fillStyle = n.pulse > 0.2 ? `rgba(224, 255, 0, ${n.pulse})` : "rgba(255,255,255,0.15)";
+        ctx.fillRect(n.x - 3, n.y - 3, 6, 6);
       });
 
       frame++;
@@ -272,7 +299,7 @@ const IoTNetwork = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="w-full h-full" />;
+  return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
 const Services = () => {
@@ -308,43 +335,8 @@ const Services = () => {
               transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
               className="h-[300px] md:h-[450px] relative flex items-center justify-center overflow-hidden"
             >
-              {i === 0 && <ParticleSphere />}
-              
-              {i === 1 && (
-                <div className="relative w-64 h-64 md:w-80 md:h-80">
-                  {/* Rotating System Core */}
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 border-[1px] border-primary/20 rounded-full border-dashed"
-                  />
-                  <motion.div 
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-4 border-[1px] border-white/5 rounded-full border-dashed"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 md:w-24 md:h-24 bg-primary/10 rounded-full blur-2xl animate-pulse" />
-                    <div className="w-4 h-4 bg-primary rounded-full shadow-[0_0_20px_#e0ff00]" />
-                  </div>
-                  {/* Floating data bits */}
-                  {[0, 60, 120, 180, 240, 300].map((deg) => (
-                    <motion.div
-                      key={deg}
-                      animate={{ 
-                        opacity: [0.2, 1, 0.2],
-                        scale: [1, 1.2, 1]
-                      }}
-                      transition={{ duration: 3, repeat: Infinity, delay: deg/60 }}
-                      className="absolute top-1/2 left-1/2 w-2 h-2 bg-primary/40 rounded-full"
-                      style={{ 
-                        transform: `rotate(${deg}deg) translate(120px) rotate(-${deg}deg)` 
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-              
+              {i === 0 && <NeuralNetwork />}
+              {i === 1 && <DataArchitecture />}
               {i === 2 && <IoTNetwork />}
             </motion.div>
           </div>
