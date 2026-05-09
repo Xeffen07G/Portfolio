@@ -90,13 +90,6 @@ const ParticleSphere = () => {
   return <canvas ref={canvasRef} className="w-full h-full" />;
 };
 
-/* Data Flow Architecture for Full-Stack */
-const DataArchitecture = () => {
-  const canvasRef = useRef(null);
-  const animRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
 /* Layered Isometric Stack for Full-Stack */
 const DataArchitecture = () => {
   const canvasRef = useRef(null);
@@ -127,7 +120,7 @@ const DataArchitecture = () => {
       const cy = h * 0.5;
       
       ctx.strokeStyle = "#e0ff00";
-      ctx.lineWidth = 5; // Bold like the robot
+      ctx.lineWidth = 5; 
       ctx.lineCap = "round";
 
       // Draw 4 Isometric Layers
@@ -147,7 +140,7 @@ const DataArchitecture = () => {
         ctx.closePath();
         ctx.stroke();
 
-        // Connecting Vertical Support lines (Subtle)
+        // Connecting Vertical Support lines
         if (i < 3) {
           ctx.save();
           ctx.lineWidth = 1;
