@@ -25,7 +25,7 @@ const Hero = () => {
   }, [position, springX, springY]);
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 md:px-12 lg:px-24 pt-24 pb-24 overflow-hidden bg-bg">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 md:px-12 lg:px-24 pt-24 pb-24 bg-bg">
       {/* Background Studio Spotlight */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40 transition-opacity duration-1000"
@@ -138,14 +138,14 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Cinematic Space-Filling Scroll Indicator */}
+      {/* Cinematic True-Bridge Scroll Indicator */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-2 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 z-20"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 hidden md:flex flex-col items-center gap-4 z-20"
       >
-        <span className="text-[9px] tracking-[1em] text-text/30 uppercase font-black ml-[1em]">Scroll</span>
+        <span className="text-[7px] tracking-[1em] text-text/30 uppercase font-black ml-[1em]">Scroll</span>
         <div className="w-[1px] h-32 bg-white/5 relative overflow-hidden">
           <motion.div 
             animate={{ 
