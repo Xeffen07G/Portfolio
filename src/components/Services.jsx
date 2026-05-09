@@ -204,7 +204,7 @@ const ParticleBot = () => {
       const cy = h * 0.5 + Math.sin(frame * 0.03) * 5;
 
       ctx.strokeStyle = "#e0ff00";
-      ctx.lineWidth = 2; // Precision blueprint lines
+      ctx.lineWidth = 5; // Perfect balance of boldness
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
 
@@ -214,17 +214,19 @@ const ParticleBot = () => {
       ctx.lineTo(cx, cy - 110);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(cx, cy - 115, 5, 0, Math.PI * 2);
-      ctx.stroke(); // Outline instead of solid fill
+      ctx.arc(cx, cy - 115, 6, 0, Math.PI * 2);
+      ctx.fillStyle = "#e0ff00";
+      ctx.fill();
 
       // 2. Head Unit
       ctx.beginPath();
       ctx.roundRect(cx - 80, cy - 80, 160, 100, 35);
       ctx.stroke();
 
-      // Eyes (Outlines for a cleaner look)
-      ctx.strokeRect(cx - 30, cy - 50, 10, 20);
-      ctx.strokeRect(cx + 20, cy - 50, 10, 20);
+      // Eyes (Solid for visibility)
+      ctx.fillStyle = "#e0ff00";
+      ctx.fillRect(cx - 30, cy - 50, 12, 25);
+      ctx.fillRect(cx + 18, cy - 50, 12, 25);
 
       // 3. Body
       ctx.beginPath();
@@ -238,8 +240,8 @@ const ParticleBot = () => {
       ctx.quadraticCurveTo(cx - 120, cy + 20, cx - 120, cy + 80);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(cx - 120, cy + 85, 10, Math.PI, 0); 
-      ctx.stroke();
+      ctx.arc(cx - 120, cy + 90, 15, Math.PI, 0); 
+      ctx.fill();
 
       // Right Arm
       ctx.beginPath();
@@ -247,11 +249,11 @@ const ParticleBot = () => {
       ctx.quadraticCurveTo(cx + 120, cy + 20, cx + 120, cy + 80);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(cx + 120, cy + 85, 10, Math.PI, 0);
-      ctx.stroke();
+      ctx.arc(cx + 120, cy + 90, 15, Math.PI, 0);
+      ctx.fill();
 
       // 5. Bottom "Thrust" Lines
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 4;
       const tY = cy + 130;
       [cx - 30, cx, cx + 30].forEach((tx, i) => {
         const bh = i === 1 ? 40 : 25;
@@ -260,14 +262,6 @@ const ParticleBot = () => {
         ctx.lineTo(tx, tY + bh + Math.sin(frame * 0.1 + i) * 5);
         ctx.stroke();
       });
-
-      // 6. Subtle Internal Glow Particles
-      for(let i=0; i<10; i++) {
-        ctx.fillStyle = "rgba(224, 255, 0, 0.2)";
-        ctx.beginPath();
-        ctx.arc(cx + (Math.random()-0.5)*120, cy + (Math.random()-0.5)*150, 2, 0, Math.PI*2);
-        ctx.fill();
-      }
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
