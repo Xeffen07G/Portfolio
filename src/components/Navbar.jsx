@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-6 py-2 flex justify-center pointer-events-none">
       <div 
-        className={`max-w-4xl w-full h-10 px-6 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
+        className={`max-w-2xl w-full h-10 px-6 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
           scrolled 
             ? "bg-bg/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]" 
             : "bg-transparent border border-transparent"
@@ -43,7 +43,7 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:block">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-6">
             {navItems.map((item) => (
               <li key={item.name}>
                 <Link
