@@ -143,22 +143,17 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 z-20"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-20"
       >
-        <span className="text-[9px] tracking-[0.8em] text-text/30 uppercase font-black ml-[0.8em]">Scroll</span>
-        <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden">
-          <motion.div 
-            animate={{ 
-              top: ["-100%", "100%"] 
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="absolute left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-primary to-transparent"
-          />
-        </div>
+        <span className="text-[8px] tracking-[0.6em] text-text/20 uppercase font-black ml-[0.6em]">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 4, 0] }}
+          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary/30">
+            <polyline points="7 13 12 18 17 13" />
+          </svg>
+        </motion.div>
       </motion.div>
     </section>
   );
