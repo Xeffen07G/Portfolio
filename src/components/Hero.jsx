@@ -66,20 +66,19 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-64 sm:w-72 md:w-80 lg:w-64 xl:w-96 aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 transition-all duration-700 group shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)]"
+            className="relative w-72 sm:w-80 md:w-96 lg:w-80 xl:w-[450px] aspect-[4/5] overflow-hidden transition-all duration-700 group"
           >
             <img 
               src="/profile.png" 
               alt="Sayak Das" 
-              className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
+              className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-1000 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100"
             />
-            {/* Subtle Overlay Glow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent opacity-60" />
+            {/* Subtle Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-40" />
           </motion.div>
           
-          {/* Decorative Rings */}
-          <div className="absolute -inset-6 border border-primary/10 rounded-3xl -z-10 animate-pulse" />
-          <div className="absolute -inset-10 border border-white/5 rounded-[40px] -z-20" />
+          {/* Subtle Ambient Glow behind image */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 blur-[100px] rounded-full -z-10 group-hover:bg-primary/20 transition-colors duration-1000" />
         </div>
 
         {/* Right side - Titles */}

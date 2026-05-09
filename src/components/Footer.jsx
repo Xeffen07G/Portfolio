@@ -32,22 +32,6 @@ const Footer = () => {
         </a>
       </motion.div>
 
-      {/* Marquee Section */}
-      <div className="py-12 border-y border-white/5 overflow-hidden mb-20 bg-primary/[0.02]">
-        <div className="marquee-content flex gap-12 items-center">
-          {[1, 2, 3, 4].map((i) => (
-            <React.Fragment key={i}>
-              <span className="text-4xl md:text-6xl font-black text-white/10 uppercase tracking-tighter">Available for Hire</span>
-              <div className="w-3 h-3 bg-primary rounded-full" />
-              <span className="text-4xl md:text-6xl font-black text-white/10 uppercase tracking-tighter">AI/ML Engineer</span>
-              <div className="w-3 h-3 bg-primary rounded-full" />
-              <span className="text-4xl md:text-6xl font-black text-white/10 uppercase tracking-tighter italic font-serif">Boutique Engineering</span>
-              <div className="w-3 h-3 bg-primary rounded-full" />
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-
       {/* Contact info row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 border-t border-white/5 pt-12">
         <div>
