@@ -40,8 +40,8 @@ const Hero = () => {
       {/* Main hero content */}
       {/* Main hero content */}
       <div className="flex-1 flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-3 items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
-        {/* Center - Portrait - Now order-1 for mobile impact */}
-        <div className="relative z-20 cursor-none flex justify-center order-1">
+        {/* Center - Portrait - order-1 on mobile, lg:order-2 on desktop */}
+        <div className="relative z-20 cursor-none flex justify-center order-1 lg:order-2">
           <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
@@ -67,8 +67,8 @@ const Hero = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160%] h-[160%] bg-primary/5 blur-[150px] rounded-full -z-10" />
         </div>
 
-        {/* Name - Now order-2 for mobile reliability */}
-        <div className="w-full text-center lg:text-left order-2">
+        {/* Name - order-2 on mobile, lg:order-1 on desktop */}
+        <div className="w-full text-center lg:text-left order-2 lg:order-1">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -84,8 +84,8 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right side - Titles */}
-        <div className="w-full text-center lg:text-right order-3">
+        {/* Right side - Titles - order-3 on both */}
+        <div className="w-full text-center lg:text-right order-3 lg:order-3">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
