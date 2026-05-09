@@ -8,7 +8,7 @@ const projects = [
     description: "An AI-powered verification platform designed to analyze and verify raw data with high precision using deep-trace intelligence.",
     tech: ["React", "Node.js", "AI APIs", "MongoDB"],
     github: "https://github.com/Xeffen07G",
-    demo: "#",
+    demo: "https://verixa.vercel.app",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=2832",
   },
   {
@@ -16,7 +16,7 @@ const projects = [
     description: "A data analytics tool that allows users to upload CSV files and get instant insights and visualizations via natural language queries.",
     tech: ["React", "Gemini API", "Python"],
     github: "https://github.com/Xeffen07G",
-    demo: "#",
+    demo: "https://insight-ai-seven.vercel.app",
     image: "https://images.unsplash.com/photo-1551288049-bbbda536ad37?auto=format&fit=crop&q=80&w=2940",
   },
 ];

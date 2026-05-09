@@ -160,9 +160,15 @@ const Achievements = () => {
               </div>
 
               {ach.image && (
-                <div className="mt-3 flex items-center gap-1 text-xs text-primary-light opacity-0 group-hover:opacity-100 transition-opacity">
-                  <FiExternalLink className="text-xs" /> View Certificate
-                </div>
+                <a 
+                  href={ach.image} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-[10px] font-black tracking-widest text-primary hover:text-white transition-colors mt-auto"
+                >
+                  <HiOutlineExternalLink size={14} />
+                  VIEW CERTIFICATE
+                </a>
               )}
             </motion.div>
           ))}

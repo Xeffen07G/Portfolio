@@ -40,25 +40,8 @@ const Hero = () => {
       {/* Main hero content */}
       {/* Main hero content */}
       <div className="flex-1 flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-3 items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
-        {/* Name - Now physically first for mobile reliability */}
-        <div className="w-full text-center lg:text-left order-1">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold font-sans">
-              Engineering <span className="text-primary">/</span> AI Systems
-            </p>
-            <h1 className="text-[14vw] sm:text-7xl md:text-8xl lg:text-6xl xl:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
-              SAYAK<br />
-              DAS
-            </h1>
-          </motion.div>
-        </div>
-
-        {/* Center - Portrait */}
-        <div className="relative z-20 cursor-none flex justify-center order-2">
+        {/* Center - Portrait - Now order-1 for mobile impact */}
+        <div className="relative z-20 cursor-none flex justify-center order-1">
           <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
@@ -82,6 +65,23 @@ const Hero = () => {
           
           {/* Soft light behind the person */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160%] h-[160%] bg-primary/5 blur-[150px] rounded-full -z-10" />
+        </div>
+
+        {/* Name - Now order-2 for mobile reliability */}
+        <div className="w-full text-center lg:text-left order-2">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold font-sans">
+              Engineering <span className="text-primary">/</span> AI Systems
+            </p>
+            <h1 className="text-[14vw] sm:text-7xl md:text-8xl lg:text-6xl xl:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+              SAYAK<br />
+              DAS
+            </h1>
+          </motion.div>
         </div>
 
         {/* Right side - Titles */}
