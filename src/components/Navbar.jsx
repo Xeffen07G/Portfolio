@@ -16,7 +16,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      // Reveal navbar after scrolling past the Hero section (roughly 700px)
+      setScrolled(window.scrollY > 700);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -24,8 +25,10 @@ const Navbar = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? "py-4 bg-bg/80 backdrop-blur-lg border-b border-white/5 shadow-2xl" : "py-8 bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
+        scrolled 
+          ? "translate-y-0 py-4 bg-bg/80 backdrop-blur-lg border-b border-white/5 shadow-2xl opacity-100" 
+          : "-translate-y-full opacity-0 py-8 bg-transparent"
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
