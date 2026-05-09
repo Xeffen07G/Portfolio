@@ -19,15 +19,22 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const isPastHero = currentScrollY > 700;
       
-      // Scrolled state for opacity (at 700px threshold)
-      setScrolled(currentScrollY > 700);
+      // Scrolled state for opacity/glass effect
+      setScrolled(isPastHero);
 
-      // Visibility state (Hide on scroll down, show on scroll up)
-      if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        setVisible(false); // Scrolling down
+      // Visibility state
+      if (isPastHero) {
+        // Once past hero, keep the navbar visible permanently
+        setVisible(true);
       } else {
-        setVisible(true); // Scrolling up
+        // While in Hero, hide on scroll down, show on scroll up
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setVisible(false); // Scrolling down
+        } else {
+          setVisible(true); // Scrolling up
+        }
       }
       
       setLastScrollY(currentScrollY);
