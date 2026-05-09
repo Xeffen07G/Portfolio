@@ -10,9 +10,9 @@ const services = [
   },
   {
     label: "Web Engineering",
-    title: "FULL-STACK",
-    titleAccent: "DEVELOPMENT",
-    desc: "Building scalable web applications from front to back. I focus on creating clean, efficient code using React and Node.js for reliable performance.",
+    title: "FULL-",
+    titleAccent: "STACK",
+    desc: "End-to-end web engineering. Building high-performance systems from the user interface to the core infrastructure.",
   },
   {
     label: "Hardware & Software",
