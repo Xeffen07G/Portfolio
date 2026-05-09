@@ -97,6 +97,13 @@ const DataArchitecture = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+/* Layered Stack Architecture for Full-Stack */
+const DataArchitecture = () => {
+  const canvasRef = useRef(null);
+  const animRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     let frame = 0;
@@ -110,54 +117,62 @@ const DataArchitecture = () => {
     };
     resize();
 
-    const packets = [];
-
     const draw = () => {
       const rect = canvas.getBoundingClientRect();
       const w = rect.width;
       const h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      const layers = [h * 0.2, h * 0.5, h * 0.8];
-      layers.forEach((ly, i) => {
-        ctx.strokeStyle = "rgba(255,255,255,0.08)";
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(40, ly);
-        ctx.lineTo(w - 40, ly);
-        ctx.stroke();
-      });
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+      
+      ctx.strokeStyle = "#e0ff00";
+      ctx.lineWidth = 4; // Matching the robot's boldness
+      ctx.lineCap = "round";
 
-      if (frame % 12 === 0) {
-        packets.push({
-          x: 60 + Math.random() * (w - 120),
-          y: layers[0],
-          targetY: layers[1],
-          stage: 0,
-          speed: 3 + Math.random() * 2
-        });
+      // Draw 4 Isometric Layers (The Stack)
+      for (let i = 0; i < 4; i++) {
+        const yOffset = i * 45 - 65;
+        const opacity = 0.2 + (i * 0.2);
+        const float = Math.sin(frame * 0.02 + i) * 5;
+        
+        ctx.strokeStyle = `rgba(224, 255, 0, ${opacity})`;
+        
+        // Draw Isometric Plane
+        ctx.beginPath();
+        ctx.moveTo(cx, cy + yOffset + float - 25); // Top
+        ctx.lineTo(cx + 90, cy + yOffset + float); // Right
+        ctx.lineTo(cx, cy + yOffset + float + 25); // Bottom
+        ctx.lineTo(cx - 90, cy + yOffset + float); // Left
+        ctx.closePath();
+        ctx.stroke();
+
+        // Connecting Vertical Support Lines
+        if (i < 3) {
+          ctx.lineWidth = 1;
+          ctx.setLineDash([5, 8]);
+          ctx.beginPath();
+          ctx.moveTo(cx - 60, cy + yOffset + float + 10);
+          ctx.lineTo(cx - 60, cy + yOffset + 45 + float + 10);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(cx + 60, cy + yOffset + float + 10);
+          ctx.lineTo(cx + 60, cy + yOffset + 45 + float + 10);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.lineWidth = 4;
+        }
       }
 
-      packets.forEach((p, i) => {
-        p.y += p.speed;
-        
-        if (p.y >= p.targetY) {
-          if (p.stage === 0) {
-            p.stage = 1;
-            p.targetY = layers[2];
-          } else {
-            packets.splice(i, 1);
-            return;
-          }
-        }
-
-        ctx.fillStyle = "#e0ff00";
-        ctx.fillRect(p.x - 1, p.y - 6, 2, 12);
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = "#e0ff00";
-        ctx.fillRect(p.x - 1, p.y - 6, 2, 12);
-        ctx.shadowBlur = 0;
-      });
+      // Vertical "Stack" Pulse
+      const pulseY = (frame * 2.5) % 220 - 110;
+      ctx.fillStyle = "#e0ff00";
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = "#e0ff00";
+      ctx.beginPath();
+      ctx.arc(cx, cy + pulseY, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
@@ -171,7 +186,7 @@ const DataArchitecture = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
+  return <canvas ref={canvasRef} className="w-full h-full" />;
 };
 
 /* Iconic Green Bot Animation for Robotics */
