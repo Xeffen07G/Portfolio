@@ -149,7 +149,7 @@ const Achievements = () => {
               <div className="flex items-start gap-3">
                 <FiAward className="text-primary-light text-lg mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="text-sm font-semibold text-text-bright mb-1 group-hover:text-primary-light transition-colors">
+                  <h4 className="text-sm font-semibold text-text-bright mb-1 group-hover:text-primary-light transition-colors safe-heading">
                     {ach.title}
                   </h4>
                   <p className="text-xs text-text mb-2">{ach.org}</p>

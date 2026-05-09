@@ -46,7 +46,7 @@ const Manifesto = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-text-bright tracking-tighter uppercase leading-[0.9]"
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-text-bright tracking-tighter uppercase leading-[0.9] safe-heading"
           >
             <span className="text-primary italic">THE</span> MANIFESTO
           </motion.h2>
@@ -77,7 +77,7 @@ const Manifesto = () => {
                 <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase block mb-3 opacity-80">
                   {item.number} / {item.label}
                 </span>
-                <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-text-bright tracking-tighter uppercase leading-[0.85] whitespace-pre-line">
+                <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-text-bright tracking-tighter uppercase leading-[0.85] whitespace-pre-line safe-heading">
                   {item.title}
                 </h3>
               </div>

@@ -303,7 +303,7 @@ const Services = () => {
               <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-4 block font-sans">
                 {svc.label}
               </span>
-              <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.9] tracking-tighter uppercase mb-8">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.9] tracking-tighter uppercase mb-8 safe-heading">
                 {svc.title}<br />
                 <span className="text-primary" style={{ WebkitTextStroke: i === 1 ? '1px #e0ff00' : 'none', color: i === 1 ? 'transparent' : '#e0ff00' }}>{svc.titleAccent}</span>
               </h2>

@@ -41,7 +41,7 @@ const Skills = () => {
     <section id="skills" className="py-24 px-6 md:px-12 bg-black">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <h2 className="text-3xl md:text-6xl font-bold text-text-bright tracking-tighter mb-4">
+          <h2 className="text-3xl md:text-6xl font-bold text-text-bright tracking-tighter mb-4 safe-heading">
             TECH <span className="text-primary italic">STACK</span>
           </h2>
           <p className="text-text text-lg max-w-xl font-medium">The architectural foundation of my intelligent solutions.</p>
@@ -57,7 +57,7 @@ const Skills = () => {
               viewport={{ once: true }}
               className="glass p-8 group hover:border-primary/20 transition-all duration-500"
             >
-              <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-primary mb-10">
+              <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-primary mb-10 safe-heading">
                 {category.title}
               </h3>
               

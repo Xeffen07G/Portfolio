@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 
 const About = () => {
@@ -10,7 +10,7 @@ const About = () => {
           <div className="lg:col-span-7">
             <Reveal y={40} stagger={0.1}>
               <h3 className="text-xs uppercase tracking-[0.4em] font-black text-primary mb-12 italic">The Manifesto</h3>
-              <h2 className="text-4xl md:text-7xl font-black text-text-bright tracking-tighter leading-[0.9] uppercase italic mb-12">
+              <h2 className="text-4xl md:text-7xl font-black text-text-bright tracking-tighter leading-[0.9] uppercase italic mb-12 safe-heading">
                 Pioneering <br />
                 <span className="text-primary not-italic">Intelligent</span> <br />
                 Architectures.

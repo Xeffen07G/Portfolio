@@ -32,7 +32,7 @@ const Projects = () => {
         transition={{ duration: 0.8 }}
         className="mb-12"
       >
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-text-bright tracking-tighter uppercase leading-[0.9]">
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-text-bright tracking-tighter uppercase leading-[0.9] safe-heading">
           <span className="text-primary italic">THE</span> ARTWORKS
         </h2>
       </motion.div>
@@ -61,7 +61,7 @@ const Projects = () => {
                 </div>
 
                 {/* Title below image on mobile, overlapping on desktop */}
-                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none mt-4 md:mt-0 md:absolute md:-bottom-8 md:left-0 z-10">
+                <h3 className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none mt-4 md:mt-0 md:absolute md:-bottom-8 md:left-0 z-10 safe-heading">
                   {project.title}
                 </h3>
               </a>

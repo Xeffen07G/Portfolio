@@ -87,7 +87,7 @@ const Contact = () => {
           <p className="text-primary-light text-sm font-medium tracking-widest uppercase mb-2">
             Let's Connect
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-text-bright">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-bright safe-heading">
             Get In <span className="gradient-text">Touch</span>
           </h2>
         </motion.div>

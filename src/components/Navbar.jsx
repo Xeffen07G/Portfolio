@@ -131,7 +131,7 @@ const Navbar = () => {
                   <Link
                     to={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="text-5xl font-black tracking-tighter text-text-bright hover:text-primary transition-colors"
+                    className="text-4xl sm:text-5xl font-black tracking-tighter text-text-bright hover:text-primary transition-colors"
                   >
                     {item.name}
                   </Link>

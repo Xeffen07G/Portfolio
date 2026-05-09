@@ -157,8 +157,8 @@ const Certifications = () => {
         <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">
           Achievements
         </span>
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-text-bright tracking-tighter uppercase leading-[0.9]">
-          THE <span className="text-primary italic">VAULT</span>
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-text-bright tracking-tighter uppercase leading-[0.9] safe-heading">
+          <span className="text-primary italic">THE</span> VAULT
         </h2>
         <p className="text-text max-w-xl mt-6 text-lg">
           An elite archive of {certifications.length} high-impact certifications, research projects, and global leadership roles.

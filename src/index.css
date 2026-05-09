@@ -16,13 +16,11 @@
 
 @layer base {
 
-  html {
-    font-family: 'Inter', sans-serif;
-  }
-
-  body {
+  html, body {
     @apply bg-bg text-text;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -74,6 +72,20 @@
     70% { transform: translate(0%, 15%); }
     80% { transform: translate(3%, 35%); }
     90% { transform: translate(-10%, 10%); }
+  }
+
+  /* Safe Text Wrapping for all screens */
+  .safe-heading {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Responsive Width Safety */
+  .vw-full {
+    width: 100vw;
+    max-width: 100%;
   }
 
   /* Hide scrollbar */
