@@ -12,20 +12,37 @@ const navItems = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Reveal navbar after scrolling past the Hero section (roughly 700px)
-      setScrolled(window.scrollY > 700);
+      const currentScrollY = window.scrollY;
+      
+      // Scrolled state for opacity (at 700px threshold)
+      setScrolled(currentScrollY > 700);
+
+      // Visibility state (Hide on scroll down, show on scroll up)
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        setVisible(false); // Scrolling down
+      } else {
+        setVisible(true); // Scrolling up
+      }
+      
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
-  return (
-    <header className="fixed top-0 left-0 w-full z-50 px-6 py-2 flex justify-center pointer-events-none">
+    <header 
+      className={`fixed top-0 left-0 w-full z-50 px-6 py-2 flex justify-center pointer-events-none transition-transform duration-500 ${
+        visible ? "translate-y-0" : "-translate-y-[150%]"
+      }`}
+    >
       <div 
         className={`w-fit h-10 px-4 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
           scrolled 
