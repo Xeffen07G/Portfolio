@@ -3,22 +3,22 @@ import { motion } from "framer-motion";
 
 const services = [
   {
-    label: "Advanced AI",
-    title: "INTELLIGENT",
+    label: "Machine Learning",
+    title: "AI & NEURAL",
     titleAccent: "SYSTEMS",
-    desc: "Designing brains for the digital age. I build custom LLMs, computer vision systems, and neural models that can think, learn, and solve complex problems autonomously.",
+    desc: "Working with large language models and computer vision to build systems that learn from data and help solve complex computational problems.",
   },
   {
-    label: "High Performance",
+    label: "Web Engineering",
     title: "FULL-STACK",
-    titleAccent: "INFRASTRUCTURE",
-    desc: "From pixel-perfect interfaces to robust back-end logic. I engineer scalable web platforms using React and Node.js that are built to handle massive traffic with zero lag.",
+    titleAccent: "DEVELOPMENT",
+    desc: "Building scalable web applications from front to back. I focus on creating clean, efficient code using React and Node.js for reliable performance.",
   },
   {
-    label: "Future Tech",
+    label: "Hardware & Software",
     title: "ROBOTICS",
-    titleAccent: "& PHYSICAL IOT",
-    desc: "Making code move. I bridge the gap between software and the physical world by designing autonomous robotic systems and IoT networks that react to their environment in real-time.",
+    titleAccent: "& IOT SYSTEMS",
+    desc: "Developing autonomous systems and IoT networks that enable software to interact with the physical world through sensors and controllers.",
   },
 ];
 
@@ -110,8 +110,8 @@ const Services = () => {
                 {svc.title}<br />
                 <span className="text-primary" style={{ WebkitTextStroke: i === 1 ? '1px #e0ff00' : 'none', color: i === 1 ? 'transparent' : '#e0ff00' }}>{svc.titleAccent}</span>
               </h2>
-              <p className="text-text text-lg md:text-xl max-w-lg mt-10 leading-relaxed font-medium italic opacity-80">
-                "{svc.desc}"
+              <p className="text-text text-lg md:text-xl max-w-lg mt-10 leading-relaxed font-medium opacity-80">
+                {svc.desc}
               </p>
             </motion.div>
 
