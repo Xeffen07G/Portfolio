@@ -25,7 +25,7 @@ const Hero = () => {
   }, [position, springX, springY]);
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 md:px-12 lg:px-24 pt-32 pb-12 overflow-hidden bg-bg">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 md:px-12 lg:px-24 pt-24 pb-24 overflow-hidden bg-bg">
       {/* Background Studio Spotlight */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40 transition-opacity duration-1000"
@@ -38,7 +38,7 @@ const Hero = () => {
       <div className="absolute -bottom-24 -left-24 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -z-10" />
 
       {/* Main hero content */}
-      <div className="flex-1 flex flex-col lg:flex-row items-center lg:items-end justify-between relative z-10 gap-8 lg:gap-4 xl:gap-16">
+      <div className="flex-1 flex flex-col lg:flex-row items-center lg:items-center justify-between relative z-10 gap-8 lg:gap-4 xl:gap-16">
         {/* Left side - Name */}
         <div className="w-full lg:w-auto text-center lg:text-left order-2 lg:order-1 flex-shrink">
           <motion.div
@@ -58,13 +58,6 @@ const Hero = () => {
 
         {/* Center - Portrait with Magnetic Effect */}
         <div className="relative order-1 lg:order-2 shrink-0 z-20 mx-4 cursor-none">
-          {/* Background Background Text for depth */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none -z-10">
-            <h2 className="text-[15rem] md:text-[20rem] lg:text-[25rem] font-black text-white/[0.03] leading-none tracking-tighter uppercase italic">
-              SAYAK
-            </h2>
-          </div>
-
           <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
