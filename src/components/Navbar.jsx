@@ -31,7 +31,7 @@ const Navbar = () => {
           : "py-8 bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Simplified Logo */}
         <Link 
           to="/" 
