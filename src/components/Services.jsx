@@ -97,7 +97,7 @@ const DataArchitecture = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-/* Layered Stack Architecture for Full-Stack */
+/* Layered Isometric Stack for Full-Stack */
 const DataArchitecture = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -127,50 +127,50 @@ const DataArchitecture = () => {
       const cy = h * 0.5;
       
       ctx.strokeStyle = "#e0ff00";
-      ctx.lineWidth = 4; // Matching the robot's boldness
+      ctx.lineWidth = 5; // Bold like the robot
       ctx.lineCap = "round";
 
-      // Draw 4 Isometric Layers (The Stack)
+      // Draw 4 Isometric Layers
       for (let i = 0; i < 4; i++) {
-        const yOffset = i * 45 - 65;
+        const yOffset = i * 50 - 75;
         const opacity = 0.2 + (i * 0.2);
-        const float = Math.sin(frame * 0.02 + i) * 5;
+        const float = Math.sin(frame * 0.02 + i) * 8;
         
         ctx.strokeStyle = `rgba(224, 255, 0, ${opacity})`;
         
         // Draw Isometric Plane
         ctx.beginPath();
-        ctx.moveTo(cx, cy + yOffset + float - 25); // Top
-        ctx.lineTo(cx + 90, cy + yOffset + float); // Right
-        ctx.lineTo(cx, cy + yOffset + float + 25); // Bottom
-        ctx.lineTo(cx - 90, cy + yOffset + float); // Left
+        ctx.moveTo(cx, cy + yOffset + float - 30);
+        ctx.lineTo(cx + 100, cy + yOffset + float);
+        ctx.lineTo(cx, cy + yOffset + float + 30);
+        ctx.lineTo(cx - 100, cy + yOffset + float);
         ctx.closePath();
         ctx.stroke();
 
-        // Connecting Vertical Support Lines
+        // Connecting Vertical Support lines (Subtle)
         if (i < 3) {
+          ctx.save();
           ctx.lineWidth = 1;
-          ctx.setLineDash([5, 8]);
+          ctx.setLineDash([5, 10]);
           ctx.beginPath();
-          ctx.moveTo(cx - 60, cy + yOffset + float + 10);
-          ctx.lineTo(cx - 60, cy + yOffset + 45 + float + 10);
+          ctx.moveTo(cx - 70, cy + yOffset + float + 15);
+          ctx.lineTo(cx - 70, cy + yOffset + 50 + float + 15);
           ctx.stroke();
           ctx.beginPath();
-          ctx.moveTo(cx + 60, cy + yOffset + float + 10);
-          ctx.lineTo(cx + 60, cy + yOffset + 45 + float + 10);
+          ctx.moveTo(cx + 70, cy + yOffset + float + 15);
+          ctx.lineTo(cx + 70, cy + yOffset + 50 + float + 15);
           ctx.stroke();
-          ctx.setLineDash([]);
-          ctx.lineWidth = 4;
+          ctx.restore();
         }
       }
 
-      // Vertical "Stack" Pulse
-      const pulseY = (frame * 2.5) % 220 - 110;
+      // Vertical Data Pulse
+      const pulseY = (frame * 3) % 240 - 120;
       ctx.fillStyle = "#e0ff00";
       ctx.shadowBlur = 20;
       ctx.shadowColor = "#e0ff00";
       ctx.beginPath();
-      ctx.arc(cx, cy + pulseY, 5, 0, Math.PI * 2);
+      ctx.arc(cx, cy + pulseY, 6, 0, Math.PI * 2);
       ctx.fill();
       ctx.shadowBlur = 0;
 
