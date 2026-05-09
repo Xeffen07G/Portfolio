@@ -195,25 +195,22 @@ const ParticleBot = () => {
     resize();
 
     const particles = [];
-    const count = 800;
+    const count = 1500; // Increased density
 
-    // Define the Robot Head shape bounds
+    // Define the Robot Head shape bounds (Scaled Up)
     const isInsideBot = (x, y) => {
-      // Main head box
-      const head = (x > -60 && x < 60 && y > -50 && y < 50);
-      // Rounded top
-      const top = (Math.sqrt(x*x + (y+40)**2) < 60 && y < -40);
-      // Ears/Side sensors
-      const leftEar = (x > -80 && x < -60 && y > -20 && y < 20);
-      const rightEar = (x > 60 && x < 80 && y > -20 && y < 20);
+      const head = (x > -90 && x < 90 && y > -70 && y < 70);
+      const top = (Math.sqrt(x*x + (y+60)**2) < 90 && y < -60);
+      const leftEar = (x > -120 && x < -90 && y > -30 && y < 30);
+      const rightEar = (x > 90 && x < 120 && y > -30 && y < 30);
       return head || top || leftEar || rightEar;
     };
 
     for (let i = 0; i < count; i++) {
       let px, py;
       do {
-        px = (Math.random() - 0.5) * 200;
-        py = (Math.random() - 0.5) * 200;
+        px = (Math.random() - 0.5) * 300;
+        py = (Math.random() - 0.5) * 300;
       } while (!isInsideBot(px, py));
 
       particles.push({ 
@@ -221,8 +218,8 @@ const ParticleBot = () => {
         baseY: py, 
         x: px, 
         y: py, 
-        size: Math.random() * 1.5,
-        speed: 0.01 + Math.random() * 0.02,
+        size: 1 + Math.random() * 2, // Larger particles
+        speed: 0.01 + Math.random() * 0.015,
         offset: Math.random() * Math.PI * 2
       });
     }
@@ -237,15 +234,15 @@ const ParticleBot = () => {
       const cy = h * 0.5;
 
       particles.forEach((p) => {
-        // Floating movement
-        p.x = cx + p.baseX + Math.sin(frame * p.speed + p.offset) * 3;
-        p.y = cy + p.baseY + Math.cos(frame * p.speed + p.offset) * 3;
+        p.x = cx + p.baseX + Math.sin(frame * p.speed + p.offset) * 4;
+        p.y = cy + p.baseY + Math.cos(frame * p.speed + p.offset) * 4;
 
-        const isEye = (Math.abs(p.baseX - 30) < 10 && Math.abs(p.baseY + 10) < 8) || 
-                      (Math.abs(p.baseX + 30) < 10 && Math.abs(p.baseY + 10) < 8);
+        const isEye = (Math.abs(p.baseX - 45) < 18 && Math.abs(p.baseY + 15) < 12) || 
+                      (Math.abs(p.baseX + 45) < 18 && Math.abs(p.baseY + 15) < 12);
 
-        const alpha = isEye ? 0.8 + Math.sin(frame * 0.1) * 0.2 : 0.15 + Math.sin(frame * 0.02 + p.offset) * 0.1;
-        const size = isEye ? p.size * 2 : p.size;
+        // Brighter alpha values
+        const alpha = isEye ? 0.9 + Math.sin(frame * 0.1) * 0.1 : 0.3 + Math.sin(frame * 0.03 + p.offset) * 0.15;
+        const size = isEye ? p.size * 2.5 : p.size;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
@@ -253,7 +250,7 @@ const ParticleBot = () => {
         ctx.fill();
 
         if (isEye) {
-          ctx.shadowBlur = 10;
+          ctx.shadowBlur = 15;
           ctx.shadowColor = "#e0ff00";
           ctx.fill();
           ctx.shadowBlur = 0;
