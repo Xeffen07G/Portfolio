@@ -39,34 +39,34 @@ const Navbar = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 px-6 py-1 flex justify-center pointer-events-none transition-transform duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-center pointer-events-none transition-transform duration-500 ${
         visible ? "translate-y-0" : "-translate-y-[150%]"
       }`}
     >
       <div 
-        className={`max-w-lg w-full h-8 px-6 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
+        className={`max-w-2xl w-full h-12 px-8 flex items-center justify-between transition-all duration-700 pointer-events-auto rounded-full ${
           scrolled 
-            ? "bg-bg/80 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]" 
+            ? "bg-bg/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]" 
             : "bg-transparent border border-transparent"
         }`}
       >
         {/* Logo */}
         <Link 
           to="/" 
-          className="text-base font-black text-text-bright tracking-tighter uppercase"
+          className="text-xl font-black text-text-bright tracking-tighter uppercase"
         >
           SAYAK<span className="text-primary">.</span>
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:block">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-10">
             {navItems.map((item) => (
               <li key={item.name}>
                 <Link
                   to={item.href}
-                  className={`text-[9px] uppercase tracking-[0.2em] font-bold transition-all hover:text-primary ${
-                    location.pathname === item.href ? "text-primary" : "text-text/40"
+                  className={`text-[10px] uppercase tracking-[0.3em] font-bold transition-all hover:text-primary ${
+                    location.pathname === item.href ? "text-primary" : "text-text/50"
                   }`}
                 >
                   {item.name}
@@ -85,7 +85,7 @@ const Navbar = () => {
               window.history.pushState(null, "", "/#contact");
             }
           }}
-          className="px-4 py-1 rounded-full bg-primary text-bg text-[9px] font-black uppercase tracking-[0.1em] hover:scale-105 transition-all"
+          className="px-6 py-2 rounded-full bg-primary text-bg text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
         >
           Let's Talk
         </Link>
