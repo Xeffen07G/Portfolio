@@ -66,19 +66,21 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-72 sm:w-80 md:w-96 lg:w-80 xl:w-[450px] aspect-[4/5] overflow-hidden transition-all duration-700 group"
+            className="relative w-72 sm:w-80 md:w-[400px] lg:w-96 xl:w-[500px] transition-all duration-700 group"
+            style={{
+              maskImage: 'radial-gradient(circle at center, black 30%, transparent 75%)',
+              WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 75%)',
+            }}
           >
             <img 
               src="/profile.png" 
               alt="Sayak Das" 
-              className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-1000 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100"
+              className="w-full h-auto object-contain scale-105 group-hover:scale-110 transition-all duration-1000 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-110"
             />
-            {/* Subtle Vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-40" />
           </motion.div>
           
           {/* Subtle Ambient Glow behind image */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 blur-[100px] rounded-full -z-10 group-hover:bg-primary/20 transition-colors duration-1000" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-primary/10 blur-[120px] rounded-full -z-10 group-hover:bg-primary/20 transition-colors duration-1000" />
         </div>
 
         {/* Right side - Titles */}
