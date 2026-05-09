@@ -74,10 +74,10 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold font-sans">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-4 md:mb-6 font-bold font-sans">
               Engineering <span className="text-primary">/</span> AI Systems
             </p>
-            <h1 className="text-[14vw] sm:text-7xl md:text-8xl lg:text-6xl xl:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-6xl xl:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
               SAYAK<br />
               DAS
             </h1>
@@ -85,19 +85,19 @@ const Hero = () => {
         </div>
 
         {/* Right side - Titles - order-3 on both */}
-        <div className="w-full text-center lg:text-right order-3 lg:order-3">
+        <div className="w-full text-center lg:text-right order-3 lg:order-3 mt-4 lg:mt-0">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 01</span>
-            <h2 className="text-[8vw] sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
+            <span className="text-primary text-xs md:text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 01</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-6 md:mb-8">
               DEV<span className="text-primary">EL</span>OPER
             </h2>
             
-            <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 02</span>
-            <h2 className="text-[8vw] sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black leading-[0.85] tracking-tighter uppercase" 
+            <span className="text-primary text-xs md:text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 02</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black leading-[0.85] tracking-tighter uppercase" 
               style={{ WebkitTextStroke: '1px rgba(224, 255, 0, 0.4)', color: 'transparent' }}>
               & AI/ML
             </h2>

@@ -303,12 +303,12 @@ const Services = () => {
               <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-4 block font-sans">
                 {svc.label}
               </span>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.9] tracking-tighter uppercase mb-8">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.9] tracking-tighter uppercase mb-8">
                 {svc.title}<br />
                 <span className="text-primary" style={{ WebkitTextStroke: i === 1 ? '1px #e0ff00' : 'none', color: i === 1 ? 'transparent' : '#e0ff00' }}>{svc.titleAccent}</span>
               </h2>
               <div className="w-12 h-[1px] bg-primary/30 mb-8" />
-              <p className="text-text/70 text-lg md:text-xl max-w-lg leading-relaxed font-medium">
+              <p className="text-text/70 text-base md:text-xl max-w-lg leading-relaxed font-medium">
                 {svc.desc}
               </p>
             </motion.div>

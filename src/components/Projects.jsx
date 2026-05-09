@@ -60,8 +60,8 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
 
-                {/* Title overlapping the image */}
-                <h3 className="text-5xl md:text-7xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none absolute -bottom-4 md:-bottom-8 left-0 z-10">
+                {/* Title below image on mobile, overlapping on desktop */}
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none mt-4 md:mt-0 md:absolute md:-bottom-8 md:left-0 z-10">
                   {project.title}
                 </h3>
               </a>
@@ -69,7 +69,7 @@ const Projects = () => {
 
             {/* Project info */}
             <div className="lg:col-span-5 flex flex-col justify-between h-full pt-4 lg:pt-0">
-              <div className="flex justify-end mb-12">
+              <div className="flex justify-start lg:justify-end mb-12">
                 <a 
                   href={project.demo} 
                   target="_blank" 
@@ -80,12 +80,12 @@ const Projects = () => {
                 </a>
               </div>
               
-              <div className="mt-auto pt-16">
-                <p className="text-text text-lg leading-relaxed italic max-w-md ml-auto text-right">
+              <div className="mt-auto pt-8 md:pt-16">
+                <p className="text-text text-base md:text-lg leading-relaxed italic max-w-md lg:ml-auto text-left lg:text-right">
                   {project.description}
                 </p>
                 
-                <div className="flex flex-wrap gap-3 mt-8 justify-end">
+                <div className="flex flex-wrap gap-3 mt-8 justify-start lg:justify-end">
                   {project.tech.map((t) => (
                     <span
                       key={t}
