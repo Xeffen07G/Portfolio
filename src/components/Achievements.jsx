@@ -164,9 +164,10 @@ const Achievements = () => {
                   href={ach.image} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[10px] font-black tracking-widest text-primary hover:text-white transition-colors mt-auto"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-2 text-[10px] font-black tracking-widest text-primary hover:text-white transition-colors mt-6 pt-4 border-t border-white/5"
                 >
-                  <HiOutlineExternalLink size={14} />
+                  <FiExternalLink size={14} />
                   VIEW CERTIFICATE
                 </a>
               )}

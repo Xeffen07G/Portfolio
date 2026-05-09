@@ -48,21 +48,23 @@ const Projects = () => {
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
           >
-            {/* Project image */}
-            <div className="lg:col-span-7 relative group">
-              <div className="relative overflow-hidden rounded-lg">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-[300px] md:h-[450px] object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              </div>
+            {/* Project image + Title (Clickable) */}
+            <div className="lg:col-span-7 relative group cursor-pointer">
+              <a href={project.demo} target="_blank" rel="noreferrer">
+                <div className="relative overflow-hidden rounded-lg">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-[300px] md:h-[450px] object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </div>
 
-              {/* Title overlapping the image */}
-              <h3 className="text-5xl md:text-7xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none absolute -bottom-4 md:-bottom-8 left-0 z-10">
-                {project.title}
-              </h3>
+                {/* Title overlapping the image */}
+                <h3 className="text-5xl md:text-7xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none absolute -bottom-4 md:-bottom-8 left-0 z-10">
+                  {project.title}
+                </h3>
+              </a>
             </div>
 
             {/* Project info */}
