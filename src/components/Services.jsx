@@ -22,8 +22,8 @@ const services = [
   },
 ];
 
-/* Neural Network Animation for AI */
-const NeuralNetwork = () => {
+/* Particle Sphere Animation for AI */
+const ParticleSphere = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -42,15 +42,13 @@ const NeuralNetwork = () => {
     };
     resize();
 
-    const nodes = [];
-    for (let i = 0; i < 40; i++) {
-      nodes.push({
-        x: Math.random() * 400,
-        y: Math.random() * 400,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        pulse: 0
-      });
+    const particles = [];
+    const count = 1000;
+    for (let i = 0; i < count; i++) {
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const r = 130 + Math.random() * 10;
+      particles.push({ theta, phi, r, speed: 0.001 + Math.random() * 0.0015 });
     }
 
     const draw = () => {
@@ -59,38 +57,21 @@ const NeuralNetwork = () => {
       const h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      nodes.forEach((n, i) => {
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < 0 || n.x > w) n.vx *= -1;
-        if (n.y < 0 || n.y > h) n.vy *= -1;
+      const cx = w * 0.5;
+      const cy = h * 0.5;
 
-        n.pulse *= 0.95;
-        if (Math.random() > 0.98) n.pulse = 1;
+      particles.forEach((p) => {
+        p.theta += p.speed;
+        const x = cx + p.r * Math.sin(p.phi) * Math.cos(p.theta + frame * 0.002);
+        const y = cy + p.r * Math.cos(p.phi);
+        const z = p.r * Math.sin(p.phi) * Math.sin(p.theta + frame * 0.002);
+        const scale = (z + p.r) / (2 * p.r);
+        const alpha = 0.05 + scale * 0.6;
+        const size = 0.4 + scale * 1.8;
 
-        // Draw connections
-        nodes.forEach((n2, j) => {
-          if (i === j) return;
-          const dist = Math.sqrt((n.x - n2.x)**2 + (n.y - n2.y)**2);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(n.x, n.y);
-            ctx.lineTo(n2.x, n2.y);
-            ctx.strokeStyle = `rgba(224, 255, 0, ${(1 - dist/100) * 0.2})`;
-            ctx.stroke();
-            
-            if (n.pulse > 0.8) {
-              ctx.beginPath();
-              ctx.arc(n.x + (n2.x - n.x) * (1-n.pulse), n.y + (n2.y - n.y) * (1-n.pulse), 3, 0, Math.PI * 2);
-              ctx.fillStyle = "#e0ff00";
-              ctx.fill();
-            }
-          }
-        });
-
-        ctx.fillStyle = n.pulse > 0.5 ? "#e0ff00" : "rgba(255,255,255,0.2)";
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(224, 255, 0, ${alpha})`;
         ctx.fill();
       });
 
@@ -106,7 +87,7 @@ const NeuralNetwork = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
+  return <canvas ref={canvasRef} className="w-full h-full" />;
 };
 
 /* Data Flow Architecture for Full-Stack */
@@ -335,7 +316,7 @@ const Services = () => {
               transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
               className="h-[300px] md:h-[450px] relative flex items-center justify-center overflow-hidden"
             >
-              {i === 0 && <NeuralNetwork />}
+              {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
               {i === 2 && <IoTNetwork />}
             </motion.div>
