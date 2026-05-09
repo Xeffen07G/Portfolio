@@ -123,7 +123,7 @@ const Hero = () => {
           {[
             { name: 'LinkedIn', url: 'https://www.linkedin.com/in/sayak-das-460157287' },
             { name: 'Github', url: 'https://github.com/Xeffen07G' },
-            { name: 'Instagram', url: 'https://instagram.com/sayak.das' }
+            { name: 'Instagram', url: 'https://www.instagram.com/sayakdas__/' }
           ].map((social) => (
             <a 
               key={social.name} 
