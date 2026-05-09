@@ -174,37 +174,105 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-import robotImg from "../assets/robot.png";
+/* Particle Bot Animation for Robotics */
+const ParticleBot = () => {
+  const canvasRef = useRef(null);
+  const animRef = useRef(null);
 
-/* Boutique Robot Image Component */
-const BoutiqueRobot = () => {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Background glow to make it pop */}
-      <div className="absolute w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-      
-      <motion.img
-        src={robotImg}
-        alt="Boutique Robot"
-        animate={{ 
-          y: [0, -15, 0],
-          rotate: [-1, 1, -1]
-        }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-        className="w-[280px] md:w-[350px] relative z-10 drop-shadow-[0_0_20px_rgba(224,255,0,0.15)]"
-      />
-      
-      {/* Technical UI overlays to keep the blueprint feel */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-10 left-10 w-20 h-20 border-l border-t border-primary" />
-        <div className="absolute bottom-10 right-10 w-20 h-20 border-r border-b border-primary" />
-      </div>
-    </div>
-  );
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let frame = 0;
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+
+    const particles = [];
+    const count = 800;
+
+    // Define the Robot Head shape bounds
+    const isInsideBot = (x, y) => {
+      // Main head box
+      const head = (x > -60 && x < 60 && y > -50 && y < 50);
+      // Rounded top
+      const top = (Math.sqrt(x*x + (y+40)**2) < 60 && y < -40);
+      // Ears/Side sensors
+      const leftEar = (x > -80 && x < -60 && y > -20 && y < 20);
+      const rightEar = (x > 60 && x < 80 && y > -20 && y < 20);
+      return head || top || leftEar || rightEar;
+    };
+
+    for (let i = 0; i < count; i++) {
+      let px, py;
+      do {
+        px = (Math.random() - 0.5) * 200;
+        py = (Math.random() - 0.5) * 200;
+      } while (!isInsideBot(px, py));
+
+      particles.push({ 
+        baseX: px, 
+        baseY: py, 
+        x: px, 
+        y: py, 
+        size: Math.random() * 1.5,
+        speed: 0.01 + Math.random() * 0.02,
+        offset: Math.random() * Math.PI * 2
+      });
+    }
+
+    const draw = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+
+      particles.forEach((p) => {
+        // Floating movement
+        p.x = cx + p.baseX + Math.sin(frame * p.speed + p.offset) * 3;
+        p.y = cy + p.baseY + Math.cos(frame * p.speed + p.offset) * 3;
+
+        const isEye = (Math.abs(p.baseX - 30) < 10 && Math.abs(p.baseY + 10) < 8) || 
+                      (Math.abs(p.baseX + 30) < 10 && Math.abs(p.baseY + 10) < 8);
+
+        const alpha = isEye ? 0.8 + Math.sin(frame * 0.1) * 0.2 : 0.15 + Math.sin(frame * 0.02 + p.offset) * 0.1;
+        const size = isEye ? p.size * 2 : p.size;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(224, 255, 0, ${alpha})`;
+        ctx.fill();
+
+        if (isEye) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = "#e0ff00";
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      });
+
+      frame++;
+      animRef.current = requestAnimationFrame(draw);
+    };
+
+    draw();
+    window.addEventListener("resize", resize);
+    return () => {
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="w-full h-full" />;
 };
 
 const Services = () => {
@@ -242,7 +310,7 @@ const Services = () => {
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
-              {i === 2 && <BoutiqueRobot />}
+              {i === 2 && <ParticleBot />}
             </motion.div>
           </div>
         </div>
