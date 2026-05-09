@@ -3,22 +3,22 @@ import { motion } from "framer-motion";
 
 const services = [
   {
-    label: "Modern Era",
-    title: "AI CHATBOT",
-    titleAccent: "INTELLIGENCE",
-    desc: "Engineered neural architectures for NLP, computer vision, and custom ML model integration.",
+    label: "Advanced AI",
+    title: "INTELLIGENT",
+    titleAccent: "SYSTEMS",
+    desc: "Designing brains for the digital age. I build custom LLMs, computer vision systems, and neural models that can think, learn, and solve complex problems autonomously.",
   },
   {
-    label: "Scalable",
+    label: "High Performance",
     title: "FULL-STACK",
-    titleAccent: "ENGINEERING",
-    desc: "React, Node.js, and cloud-native platforms built for real-time performance at scale.",
+    titleAccent: "INFRASTRUCTURE",
+    desc: "From pixel-perfect interfaces to robust back-end logic. I engineer scalable web platforms using React and Node.js that are built to handle massive traffic with zero lag.",
   },
   {
-    label: "Innovation",
+    label: "Future Tech",
     title: "ROBOTICS",
-    titleAccent: "& IOT",
-    desc: "Embedded systems, sensor fusion, and autonomous controllers for physical intelligence.",
+    titleAccent: "& PHYSICAL IOT",
+    desc: "Making code move. I bridge the gap between software and the physical world by designing autonomous robotic systems and IoT networks that react to their environment in real-time.",
   },
 ];
 
@@ -43,12 +43,12 @@ const ParticleSphere = () => {
     resize();
 
     const particles = [];
-    const count = 600;
+    const count = 800;
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
-      const r = 100 + Math.random() * 10;
-      particles.push({ theta, phi, r, speed: 0.002 + Math.random() * 0.003 });
+      const r = 120 + Math.random() * 15;
+      particles.push({ theta, phi, r, speed: 0.001 + Math.random() * 0.002 });
     }
 
     const draw = () => {
@@ -62,12 +62,12 @@ const ParticleSphere = () => {
 
       particles.forEach((p) => {
         p.theta += p.speed;
-        const x = cx + p.r * Math.sin(p.phi) * Math.cos(p.theta + frame * 0.003);
+        const x = cx + p.r * Math.sin(p.phi) * Math.cos(p.theta + frame * 0.002);
         const y = cy + p.r * Math.cos(p.phi);
-        const z = p.r * Math.sin(p.phi) * Math.sin(p.theta + frame * 0.003);
+        const z = p.r * Math.sin(p.phi) * Math.sin(p.theta + frame * 0.002);
         const scale = (z + p.r) / (2 * p.r);
-        const alpha = 0.15 + scale * 0.6;
-        const size = 0.5 + scale * 1.2;
+        const alpha = 0.1 + scale * 0.5;
+        const size = 0.4 + scale * 1.5;
 
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI * 2);
@@ -92,61 +92,92 @@ const ParticleSphere = () => {
 
 const Services = () => {
   return (
-    <section id="services" className="relative py-20">
+    <section id="services" className="relative py-20 bg-bg">
       {services.map((svc, i) => (
-        <div key={i} className="py-20 md:py-28 px-6 md:px-12 lg:px-24 border-t border-white/5">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <div key={i} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-white/5 last:border-b">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
             {/* Text side */}
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase mb-6 block">
+              <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-8 block font-sans">
                 {svc.label}
               </span>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-text-bright leading-[0.9] tracking-tighter uppercase mb-4">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-6">
                 {svc.title}<br />
-                <span className="text-primary">{svc.titleAccent}</span>
+                <span className="text-primary" style={{ WebkitTextStroke: i === 1 ? '1px #e0ff00' : 'none', color: i === 1 ? 'transparent' : '#e0ff00' }}>{svc.titleAccent}</span>
               </h2>
-              <p className="text-text text-base md:text-lg max-w-md mt-8 leading-relaxed">
-                {svc.desc}
+              <p className="text-text text-lg md:text-xl max-w-lg mt-10 leading-relaxed font-medium italic opacity-80">
+                "{svc.desc}"
               </p>
             </motion.div>
 
-            {/* Visual side - only show particle on first card */}
+            {/* Visual side */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="h-[280px] md:h-[350px] relative"
+              className="h-[300px] md:h-[450px] relative flex items-center justify-center overflow-hidden"
             >
               {i === 0 && <ParticleSphere />}
+              
               {i === 1 && (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="w-48 h-48 md:w-64 md:h-64 border border-primary/20 rounded-full flex items-center justify-center relative">
-                    <div className="w-32 h-32 md:w-40 md:h-40 border border-primary/10 rounded-full flex items-center justify-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/5 rounded-full" />
-                    </div>
-                    <div className="absolute inset-0 border border-primary/5 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+                <div className="relative w-64 h-64 md:w-80 md:h-80">
+                  {/* Rotating System Core */}
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 border-[1px] border-primary/20 rounded-full border-dashed"
+                  />
+                  <motion.div 
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-4 border-[1px] border-white/5 rounded-full border-dashed"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 md:w-24 md:h-24 bg-primary/10 rounded-full blur-2xl animate-pulse" />
+                    <div className="w-4 h-4 bg-primary rounded-full shadow-[0_0_20px_#e0ff00]" />
                   </div>
+                  {/* Floating data bits */}
+                  {[0, 60, 120, 180, 240, 300].map((deg) => (
+                    <motion.div
+                      key={deg}
+                      animate={{ 
+                        opacity: [0.2, 1, 0.2],
+                        scale: [1, 1.2, 1]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, delay: deg/60 }}
+                      className="absolute top-1/2 left-1/2 w-2 h-2 bg-primary/40 rounded-full"
+                      style={{ 
+                        transform: `rotate(${deg}deg) translate(120px) rotate(-${deg}deg)` 
+                      }}
+                    />
+                  ))}
                 </div>
               )}
+              
               {i === 2 && (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="grid grid-cols-3 gap-3">
-                    {[...Array(9)].map((_, j) => (
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {/* Sensor Pulse Matrix */}
+                  <div className="grid grid-cols-5 gap-4">
+                    {[...Array(25)].map((_, j) => (
                       <motion.div
                         key={j}
-                        initial={{ opacity: 0.1 }}
-                        whileInView={{ opacity: [0.1, 0.5, 0.1] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: j * 0.2 }}
-                        className="w-12 h-12 md:w-16 md:h-16 border border-primary/15 rounded-lg bg-primary/[0.02]"
+                        initial={{ opacity: 0.05 }}
+                        whileInView={{ 
+                          opacity: [0.05, 0.3, 0.05],
+                          backgroundColor: ["rgba(224,255,0,0)", "rgba(224,255,0,0.1)", "rgba(224,255,0,0)"]
+                        }}
+                        transition={{ duration: 2.5, repeat: Infinity, delay: (j % 5) * 0.1 + Math.floor(j / 5) * 0.1 }}
+                        className="w-10 h-10 md:w-14 md:h-14 border border-white/5 rounded-sm"
                       />
                     ))}
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-bg" />
                 </div>
               )}
             </motion.div>
