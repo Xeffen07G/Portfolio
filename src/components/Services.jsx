@@ -174,7 +174,7 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* Full Blueprint Bot Animation for Robotics */
+/* Iconic Green Bot Animation for Robotics */
 const ParticleBot = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -194,17 +194,6 @@ const ParticleBot = () => {
     };
     resize();
 
-    const particles = [];
-    const count = 500;
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        angle: Math.random() * Math.PI * 2,
-        radius: 30 + Math.random() * 80,
-        speed: 0.01 + Math.random() * 0.02,
-        size: 0.5 + Math.random() * 1.2
-      });
-    }
-
     const draw = () => {
       const rect = canvas.getBoundingClientRect();
       const w = rect.width;
@@ -212,80 +201,75 @@ const ParticleBot = () => {
       ctx.clearRect(0, 0, w, h);
 
       const cx = w * 0.5;
-      const cy = h * 0.5 + Math.sin(frame * 0.02) * 5;
+      const cy = h * 0.5 + Math.sin(frame * 0.03) * 5;
 
-      ctx.strokeStyle = "rgba(224, 255, 0, 0.2)";
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = "#e0ff00";
+      ctx.lineWidth = 12; // Bold lines like the icon
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
 
-      // 1. Head Unit (with Screen)
+      // 1. Antenna
       ctx.beginPath();
-      ctx.roundRect(cx - 70, cy - 80, 140, 100, 30); // Main Head
+      ctx.moveTo(cx, cy - 80);
+      ctx.lineTo(cx, cy - 110);
       ctx.stroke();
-      
-      ctx.fillStyle = "rgba(224, 255, 0, 0.03)";
       ctx.beginPath();
-      ctx.roundRect(cx - 60, cy - 70, 120, 80, 20); // Screen Area
+      ctx.arc(cx, cy - 120, 8, 0, Math.PI * 2);
+      ctx.fillStyle = "#e0ff00";
       ctx.fill();
-      ctx.stroke();
 
-      // 2. Body Core
+      // 2. Head Unit
       ctx.beginPath();
-      ctx.roundRect(cx - 50, cy + 25, 100, 70, 25);
+      ctx.roundRect(cx - 80, cy - 80, 160, 100, 35);
       ctx.stroke();
 
-      // 3. Limbs (Hands/Arms)
+      // Eyes
+      ctx.fillStyle = "#e0ff00";
+      ctx.fillRect(cx - 30, cy - 50, 12, 25);
+      ctx.fillRect(cx + 18, cy - 50, 12, 25);
+
+      // 3. Body
+      ctx.beginPath();
+      ctx.roundRect(cx - 50, cy + 30, 100, 85, 25);
+      ctx.stroke();
+
+      // 4. Arms
       // Left Arm
       ctx.beginPath();
-      ctx.moveTo(cx - 70, cy - 10);
-      ctx.quadraticCurveTo(cx - 110, cy + 20, cx - 100, cy + 70);
+      ctx.moveTo(cx - 80, cy - 10);
+      ctx.quadraticCurveTo(cx - 120, cy + 20, cx - 120, cy + 80);
       ctx.stroke();
-      // Fingers
-      for(let i=0; i<3; i++) {
-        ctx.beginPath();
-        ctx.moveTo(cx - 100, cy + 70);
-        ctx.lineTo(cx - 110 + i * 10, cy + 85);
-        ctx.stroke();
-      }
+      ctx.beginPath();
+      ctx.arc(cx - 120, cy + 90, 15, Math.PI, 0); // Rounded end
+      ctx.fill();
 
       // Right Arm
       ctx.beginPath();
-      ctx.moveTo(cx + 70, cy - 10);
-      ctx.quadraticCurveTo(cx + 110, cy + 20, cx + 100, cy + 70);
+      ctx.moveTo(cx + 80, cy - 10);
+      ctx.quadraticCurveTo(cx + 120, cy + 20, cx + 120, cy + 80);
       ctx.stroke();
-      // Fingers
-      for(let i=0; i<3; i++) {
-        ctx.beginPath();
-        ctx.moveTo(cx + 100, cy + 70);
-        ctx.lineTo(cx + 110 - i * 10, cy + 85);
-        ctx.stroke();
-      }
+      ctx.beginPath();
+      ctx.arc(cx + 120, cy + 90, 15, Math.PI, 0);
+      ctx.fill();
 
-      // 4. Internal Energy Flow
-      particles.forEach((p, i) => {
-        const x = cx + Math.cos(p.angle + frame * p.speed) * p.radius;
-        const y = cy + Math.sin(p.angle + frame * p.speed * 0.5) * (p.radius * 0.8);
-        
-        ctx.fillStyle = `rgba(224, 255, 0, ${0.1 + Math.random() * 0.2})`;
+      // 5. Bottom "Thrust" Lines
+      ctx.lineWidth = 10;
+      const tY = cy + 130;
+      [cx - 30, cx, cx + 30].forEach((tx, i) => {
+        const bh = i === 1 ? 40 : 25;
         ctx.beginPath();
-        ctx.arc(x, y, p.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.moveTo(tx, tY);
+        ctx.lineTo(tx, tY + bh + Math.sin(frame * 0.1 + i) * 5);
+        ctx.stroke();
       });
 
-      // 5. Optical Units (Eyes)
-      const blink = Math.sin(frame * 0.04) > 0.98 ? 0.1 : 1;
-      ctx.fillStyle = "#e0ff00";
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = "#e0ff00";
-      
-      ctx.beginPath();
-      ctx.ellipse(cx - 30, cy - 30, 10, 15 * blink, 0, 0, Math.PI * 2);
-      ctx.fill();
-      
-      ctx.beginPath();
-      ctx.ellipse(cx + 30, cy - 30, 10, 15 * blink, 0, 0, Math.PI * 2);
-      ctx.fill();
-      
-      ctx.shadowBlur = 0;
+      // 6. Subtle Internal Glow Particles
+      for(let i=0; i<10; i++) {
+        ctx.fillStyle = "rgba(224, 255, 0, 0.2)";
+        ctx.beginPath();
+        ctx.arc(cx + (Math.random()-0.5)*120, cy + (Math.random()-0.5)*150, 2, 0, Math.PI*2);
+        ctx.fill();
+      }
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
