@@ -319,15 +319,11 @@ const Services = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className={`h-[350px] md:h-[500px] w-full relative flex items-center justify-center overflow-hidden bg-white/[0.02] rounded-3xl border border-white/5 ${i === 1 ? "lg:order-1" : ""}`}
+              className={`h-[350px] md:h-[500px] w-full relative flex items-center justify-center overflow-hidden ${i === 1 ? "lg:order-1" : ""}`}
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
               {i === 2 && <ParticleBot />}
-              
-              {/* Corner Accents */}
-              <div className="absolute top-6 left-6 w-8 h-8 border-l border-t border-primary/20" />
-              <div className="absolute bottom-6 right-6 w-8 h-8 border-r border-b border-primary/20" />
             </motion.div>
           </div>
         </div>
