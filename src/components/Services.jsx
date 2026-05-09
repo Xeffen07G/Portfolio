@@ -174,8 +174,8 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* Robotic System Animation */
-const RoboticSystem = () => {
+/* Digital Bot Core Animation */
+const BotCore = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -194,86 +194,66 @@ const RoboticSystem = () => {
     };
     resize();
 
-    const target = { x: 200, y: 200 };
-    const arm = { x: 40, y: 360, len1: 150, len2: 150 };
-
     const draw = () => {
       const rect = canvas.getBoundingClientRect();
       const w = rect.width;
       const h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      // Set base position
-      arm.y = h - 40;
+      const cx = w * 0.5;
+      const cy = h * 0.5 + Math.sin(frame * 0.02) * 10;
 
-      // Move target
-      if (frame % 120 === 0) {
-        target.x = 100 + Math.random() * (w - 200);
-        target.y = 100 + Math.random() * (h - 200);
-      }
-
-      // Draw Grid (Technical background)
-      ctx.strokeStyle = "rgba(255,255,255,0.03)";
+      // Draw Blueprint Grid behind Bot
+      ctx.strokeStyle = "rgba(255,255,255,0.02)";
       ctx.lineWidth = 1;
-      for(let i=0; i<w; i+=40) {
+      for(let i=0; i<w; i+=30) {
         ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
       }
-      for(let i=0; i<h; i+=40) {
-        ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke();
+
+      // Robot Head Shape (Minimalist)
+      ctx.strokeStyle = "rgba(224, 255, 0, 0.2)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(cx - 80, cy - 70, 160, 140);
+      
+      // Outer Glow
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = "rgba(224, 255, 0, 0.1)";
+      ctx.strokeStyle = "rgba(224, 255, 0, 0.5)";
+      ctx.strokeRect(cx - 70, cy - 60, 140, 120);
+      ctx.shadowBlur = 0;
+
+      // Eyes
+      const blink = Math.sin(frame * 0.05) > 0.98 ? 0.1 : 1;
+      ctx.fillStyle = "#e0ff00";
+      
+      // Left Eye
+      ctx.beginPath();
+      ctx.ellipse(cx - 35, cy - 10, 12, 18 * blink, 0, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Right Eye
+      ctx.beginPath();
+      ctx.ellipse(cx + 35, cy - 10, 12, 18 * blink, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Data mouth (Frequency Bars)
+      for (let i = 0; i < 15; i++) {
+        const bh = 10 + Math.random() * 20;
+        ctx.fillStyle = `rgba(224, 255, 0, ${0.3 + Math.random() * 0.4})`;
+        ctx.fillRect(cx - 60 + i * 8, cy + 30, 4, bh);
       }
 
-      // Simple Inverse Kinematics (Approximation for visual)
-      const dx = target.x - arm.x;
-      const dy = target.y - arm.y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      const angle = Math.atan2(dy, dx);
-      
-      const jointX = arm.x + Math.cos(angle - 0.5) * arm.len1;
-      const jointY = arm.y + Math.sin(angle - 0.5) * arm.len1;
-
-      // Draw Arm
-      ctx.lineWidth = 4;
-      ctx.lineCap = "round";
-      ctx.strokeStyle = "rgba(224, 255, 0, 0.4)";
-      
-      // Segment 1
-      ctx.beginPath();
-      ctx.moveTo(arm.x, arm.y);
-      ctx.lineTo(jointX, jointY);
-      ctx.stroke();
-
-      // Segment 2
+      // Antenna / Sensors
       ctx.strokeStyle = "#e0ff00";
       ctx.beginPath();
-      ctx.moveTo(jointX, jointY);
-      ctx.lineTo(target.x, target.y);
+      ctx.moveTo(cx, cy - 70);
+      ctx.lineTo(cx, cy - 100);
       ctx.stroke();
-
-      // Joints
-      ctx.fillStyle = "#e0ff00";
-      ctx.beginPath(); ctx.arc(arm.x, arm.y, 6, 0, Math.PI*2); ctx.fill();
-      ctx.beginPath(); ctx.arc(jointX, jointY, 5, 0, Math.PI*2); ctx.fill();
-
-      // Gripper / Head
-      ctx.save();
-      ctx.translate(target.x, target.y);
-      ctx.rotate(angle);
-      ctx.strokeRect(-10, -10, 20, 20);
-      ctx.restore();
-
-      // Scanning Pulse (LIDAR effect)
-      ctx.strokeStyle = `rgba(224, 255, 0, ${0.1 + Math.sin(frame * 0.05) * 0.1})`;
+      
       ctx.beginPath();
-      ctx.arc(target.x, target.y, 40 + Math.sin(frame * 0.1) * 10, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Data "Ping"
-      if (frame % 60 < 20) {
-        ctx.fillStyle = `rgba(224, 255, 0, ${1 - (frame % 60)/20})`;
-        ctx.beginPath();
-        ctx.arc(target.x, target.y, (frame % 60) * 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.arc(cx, cy - 105, 4, 0, Math.PI * 2);
+      ctx.fillStyle = frame % 60 < 30 ? "#e0ff00" : "transparent";
+      ctx.fill();
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
@@ -325,7 +305,7 @@ const Services = () => {
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
-              {i === 2 && <RoboticSystem />}
+              {i === 2 && <BotCore />}
             </motion.div>
           </div>
         </div>
