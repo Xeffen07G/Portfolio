@@ -39,7 +39,7 @@ const Hero = () => {
 
       {/* Main hero content */}
       {/* Main hero content */}
-      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-3 items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
+      <div className="flex-1 flex flex-col gap-12 lg:gap-0 lg:grid lg:grid-cols-3 items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
         {/* Left side - Name */}
         <div className="w-full text-center lg:text-left order-2 lg:order-1">
           <motion.div
@@ -50,7 +50,7 @@ const Hero = () => {
             <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold font-sans">
               Engineering <span className="text-primary">/</span> AI Systems
             </p>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-6xl xl:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-6xl xl:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
               SAYAK<br />
               DAS
             </h1>
@@ -67,7 +67,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-80 sm:w-96 md:w-[400px] lg:w-[450px] xl:w-[600px] transition-all duration-700 group"
+            className="relative w-64 sm:w-80 md:w-96 lg:w-[400px] xl:w-[600px] transition-all duration-700 group"
             style={{
               maskImage: 'linear-gradient(to bottom, black 75%, transparent 98%)',
               WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 98%)',
@@ -92,12 +92,12 @@ const Hero = () => {
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 01</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
               DEV<span className="text-primary">EL</span>OPER
             </h2>
             
             <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 02</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black leading-[0.85] tracking-tighter uppercase" 
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black leading-[0.85] tracking-tighter uppercase" 
               style={{ WebkitTextStroke: '1px rgba(224, 255, 0, 0.4)', color: 'transparent' }}>
               & AI/ML
             </h2>
@@ -110,9 +110,9 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="mt-12 flex flex-col sm:flex-row justify-between items-end gap-8 pt-8 border-t border-white/5"
+        className="mt-12 flex flex-col sm:flex-row justify-between items-center sm:items-end gap-8 pt-8 border-t border-white/5"
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 items-center sm:items-start">
           <span className="text-[10px] tracking-[0.4em] uppercase text-text/40 font-bold">Current Status</span>
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_10px_#e0ff00]" />
@@ -120,7 +120,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="flex gap-12">
+        <div className="flex gap-8 sm:gap-12">
           {[
             { name: 'LinkedIn', url: 'https://www.linkedin.com/in/sayak-das-460157287' },
             { name: 'Github', url: 'https://github.com/Xeffen07G' },
