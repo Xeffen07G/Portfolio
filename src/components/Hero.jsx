@@ -58,29 +58,36 @@ const Hero = () => {
 
         {/* Center - Portrait with Magnetic Effect */}
         <div className="relative order-1 lg:order-2 shrink-0 z-20 mx-4 cursor-none">
+          {/* Background Background Text for depth */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none -z-10">
+            <h2 className="text-[15rem] md:text-[20rem] lg:text-[25rem] font-black text-white/[0.03] leading-none tracking-tighter uppercase italic">
+              SAYAK
+            </h2>
+          </div>
+
           <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{ x: springX, y: springY }}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-72 sm:w-80 md:w-[400px] lg:w-96 xl:w-[500px] transition-all duration-700 group"
+            transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="relative w-80 sm:w-96 md:w-[450px] lg:w-[500px] xl:w-[600px] transition-all duration-700 group"
             style={{
-              maskImage: 'radial-gradient(circle at center, black 30%, transparent 75%)',
-              WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 75%)',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 95%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 95%)',
             }}
           >
             <img 
               src="/profile.png" 
               alt="Sayak Das" 
-              className="w-full h-auto object-contain scale-105 group-hover:scale-110 transition-all duration-1000 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-110"
+              className="w-full h-auto object-contain scale-105 group-hover:scale-110 transition-all duration-1000 grayscale group-hover:grayscale-0 brightness-90 group-hover:brightness-110"
             />
           </motion.div>
           
-          {/* Subtle Ambient Glow behind image */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-primary/10 blur-[120px] rounded-full -z-10 group-hover:bg-primary/20 transition-colors duration-1000" />
+          {/* Soft light behind the person */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160%] h-[160%] bg-primary/5 blur-[150px] rounded-full -z-10" />
         </div>
 
         {/* Right side - Titles */}
