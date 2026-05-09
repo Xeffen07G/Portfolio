@@ -174,8 +174,8 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* Mechanical Power Core for Robotics */
-const MechanicalCore = () => {
+/* Friendly Bot Animation */
+const FriendlyBot = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -201,7 +201,7 @@ const MechanicalCore = () => {
       ctx.clearRect(0, 0, w, h);
 
       const cx = w * 0.5;
-      const cy = h * 0.5;
+      const cy = h * 0.5 + Math.sin(frame * 0.03) * 8;
 
       // Draw Blueprint Grid
       ctx.strokeStyle = "rgba(255,255,255,0.02)";
@@ -210,52 +210,67 @@ const MechanicalCore = () => {
         ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
       }
 
-      // 1. Central Core
-      const corePulse = 0.8 + Math.sin(frame * 0.05) * 0.2;
-      ctx.shadowBlur = 30 * corePulse;
-      ctx.shadowColor = "#e0ff00";
-      ctx.fillStyle = `rgba(224, 255, 0, ${0.4 * corePulse})`;
+      // 1. Robot Head Shell
+      ctx.save();
+      ctx.shadowBlur = 30;
+      ctx.shadowColor = "rgba(224, 255, 0, 0.1)";
+      
+      ctx.strokeStyle = "rgba(224, 255, 0, 0.3)";
+      ctx.lineWidth = 2;
+      // Drawing a rounded rectangle for head
+      const r = 40;
+      const hw = 100;
+      const hh = 80;
       ctx.beginPath();
-      ctx.arc(cx, cy, 30, 0, Math.PI * 2);
+      ctx.moveTo(cx - hw + r, cy - hh);
+      ctx.lineTo(cx + hw - r, cy - hh);
+      ctx.quadraticCurveTo(cx + hw, cy - hh, cx + hw, cy - hh + r);
+      ctx.lineTo(cx + hw, cy + hh - r);
+      ctx.quadraticCurveTo(cx + hw, cy + hh, cx + hw - r, cy + hh);
+      ctx.lineTo(cx - hw + r, cy + hh);
+      ctx.quadraticCurveTo(cx - hw, cy + hh, cx - hw, cy + hh - r);
+      ctx.lineTo(cx - hw, cy - hh + r);
+      ctx.quadraticCurveTo(cx - hw, cy - hh, cx - hw + r, cy - hh);
+      ctx.stroke();
+      ctx.restore();
+
+      // 2. Face Plate (The "Screen")
+      ctx.fillStyle = "rgba(224, 255, 0, 0.03)";
+      ctx.beginPath();
+      ctx.roundRect(cx - 85, cy - 65, 170, 130, 30);
+      ctx.fill();
+      ctx.strokeStyle = "rgba(224, 255, 0, 0.1)";
+      ctx.stroke();
+
+      // 3. Friendly Eyes (Horizontal Pills)
+      const blink = Math.sin(frame * 0.04) > 0.98 ? 0.1 : 1;
+      ctx.fillStyle = "#e0ff00";
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = "#e0ff00";
+      
+      // Left Eye
+      ctx.beginPath();
+      ctx.roundRect(cx - 50, cy - 15, 30, 25 * blink, 12);
+      ctx.fill();
+      
+      // Right Eye
+      ctx.beginPath();
+      ctx.roundRect(cx + 20, cy - 15, 30, 25 * blink, 12);
       ctx.fill();
       ctx.shadowBlur = 0;
 
-      // 2. Rotating Rings
-      const drawRing = (radius, speed, angle, thickness) => {
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.rotate(frame * speed);
-        ctx.rotate(angle);
-        
-        // Ring
-        ctx.strokeStyle = "rgba(255,255,255,0.1)";
-        ctx.lineWidth = thickness;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, radius, radius * 0.4, 0, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Mechanical Connectors on Ring
-        for(let i=0; i<4; i++) {
-          const rAngle = (i * Math.PI) / 2;
-          const rx = Math.cos(rAngle) * radius;
-          const ry = Math.sin(rAngle) * radius * 0.4;
-          ctx.fillStyle = "#e0ff00";
-          ctx.fillRect(rx - 3, ry - 3, 6, 6);
-          
-          // Data Pulse
-          if (frame % 60 === i * 15) {
-            ctx.beginPath();
-            ctx.arc(rx, ry, 15, 0, Math.PI * 2);
-            ctx.strokeStyle = "rgba(224, 255, 0, 0.5)";
-            ctx.stroke();
-          }
-        }
-        ctx.restore();
-      };
-
-      drawRing(120, 0.01, 0.5, 1);
-      drawRing(90, -0.015, -0.3, 1);
-      drawRing(60, 0.02, 1.2, 1);
+      // 4. Tech Details
+      ctx.strokeStyle = "#e0ff00";
+      ctx.lineWidth = 1;
+      // Antenna
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - hh);
+      ctx.lineTo(cx, cy - hh - 30);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(cx, cy - hh - 35, 3, 0, Math.PI * 2);
+      ctx.fillStyle = frame % 40 < 20 ? "#e0ff00" : "transparent";
+      ctx.fill();
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
@@ -307,7 +322,7 @@ const Services = () => {
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
-              {i === 2 && <MechanicalCore />}
+              {i === 2 && <FriendlyBot />}
             </motion.div>
           </div>
         </div>
