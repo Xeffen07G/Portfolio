@@ -174,8 +174,8 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* Digital Bot Core Animation */
-const BotCore = () => {
+/* Mechanical Power Core for Robotics */
+const MechanicalCore = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -201,59 +201,61 @@ const BotCore = () => {
       ctx.clearRect(0, 0, w, h);
 
       const cx = w * 0.5;
-      const cy = h * 0.5 + Math.sin(frame * 0.02) * 10;
+      const cy = h * 0.5;
 
-      // Draw Blueprint Grid behind Bot
+      // Draw Blueprint Grid
       ctx.strokeStyle = "rgba(255,255,255,0.02)";
       ctx.lineWidth = 1;
-      for(let i=0; i<w; i+=30) {
+      for(let i=0; i<w; i+=40) {
         ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
       }
 
-      // Robot Head Shape (Minimalist)
-      ctx.strokeStyle = "rgba(224, 255, 0, 0.2)";
-      ctx.lineWidth = 2;
-      ctx.strokeRect(cx - 80, cy - 70, 160, 140);
-      
-      // Outer Glow
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = "rgba(224, 255, 0, 0.1)";
-      ctx.strokeStyle = "rgba(224, 255, 0, 0.5)";
-      ctx.strokeRect(cx - 70, cy - 60, 140, 120);
+      // 1. Central Core
+      const corePulse = 0.8 + Math.sin(frame * 0.05) * 0.2;
+      ctx.shadowBlur = 30 * corePulse;
+      ctx.shadowColor = "#e0ff00";
+      ctx.fillStyle = `rgba(224, 255, 0, ${0.4 * corePulse})`;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 30, 0, Math.PI * 2);
+      ctx.fill();
       ctx.shadowBlur = 0;
 
-      // Eyes
-      const blink = Math.sin(frame * 0.05) > 0.98 ? 0.1 : 1;
-      ctx.fillStyle = "#e0ff00";
-      
-      // Left Eye
-      ctx.beginPath();
-      ctx.ellipse(cx - 35, cy - 10, 12, 18 * blink, 0, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Right Eye
-      ctx.beginPath();
-      ctx.ellipse(cx + 35, cy - 10, 12, 18 * blink, 0, 0, Math.PI * 2);
-      ctx.fill();
+      // 2. Rotating Rings
+      const drawRing = (radius, speed, angle, thickness) => {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(frame * speed);
+        ctx.rotate(angle);
+        
+        // Ring
+        ctx.strokeStyle = "rgba(255,255,255,0.1)";
+        ctx.lineWidth = thickness;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, radius, radius * 0.4, 0, 0, Math.PI * 2);
+        ctx.stroke();
 
-      // Data mouth (Frequency Bars)
-      for (let i = 0; i < 15; i++) {
-        const bh = 10 + Math.random() * 20;
-        ctx.fillStyle = `rgba(224, 255, 0, ${0.3 + Math.random() * 0.4})`;
-        ctx.fillRect(cx - 60 + i * 8, cy + 30, 4, bh);
-      }
+        // Mechanical Connectors on Ring
+        for(let i=0; i<4; i++) {
+          const rAngle = (i * Math.PI) / 2;
+          const rx = Math.cos(rAngle) * radius;
+          const ry = Math.sin(rAngle) * radius * 0.4;
+          ctx.fillStyle = "#e0ff00";
+          ctx.fillRect(rx - 3, ry - 3, 6, 6);
+          
+          // Data Pulse
+          if (frame % 60 === i * 15) {
+            ctx.beginPath();
+            ctx.arc(rx, ry, 15, 0, Math.PI * 2);
+            ctx.strokeStyle = "rgba(224, 255, 0, 0.5)";
+            ctx.stroke();
+          }
+        }
+        ctx.restore();
+      };
 
-      // Antenna / Sensors
-      ctx.strokeStyle = "#e0ff00";
-      ctx.beginPath();
-      ctx.moveTo(cx, cy - 70);
-      ctx.lineTo(cx, cy - 100);
-      ctx.stroke();
-      
-      ctx.beginPath();
-      ctx.arc(cx, cy - 105, 4, 0, Math.PI * 2);
-      ctx.fillStyle = frame % 60 < 30 ? "#e0ff00" : "transparent";
-      ctx.fill();
+      drawRing(120, 0.01, 0.5, 1);
+      drawRing(90, -0.015, -0.3, 1);
+      drawRing(60, 0.02, 1.2, 1);
 
       frame++;
       animRef.current = requestAnimationFrame(draw);
@@ -305,7 +307,7 @@ const Services = () => {
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
-              {i === 2 && <BotCore />}
+              {i === 2 && <MechanicalCore />}
             </motion.div>
           </div>
         </div>
