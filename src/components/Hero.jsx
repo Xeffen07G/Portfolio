@@ -39,9 +39,9 @@ const Hero = () => {
 
       {/* Main hero content */}
       {/* Main hero content */}
-      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-[1.2fr_auto_1.2fr] items-center justify-items-center relative z-10 w-full lg:gap-12 xl:gap-24">
+      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-3 items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
         {/* Left side - Name */}
-        <div className="w-full text-center lg:text-left order-2 lg:order-1 lg:pl-12 xl:pl-24">
+        <div className="w-full text-center lg:text-left order-2 lg:order-1">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -50,7 +50,7 @@ const Hero = () => {
             <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold font-sans">
               Engineering <span className="text-primary">/</span> AI Systems
             </p>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[5.5rem] xl:text-[8.5rem] font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-6xl xl:text-8xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
               SAYAK<br />
               DAS
             </h1>
@@ -67,7 +67,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-80 sm:w-96 md:w-[450px] lg:w-[500px] xl:w-[650px] transition-all duration-700 group"
+            className="relative w-80 sm:w-96 md:w-[400px] lg:w-[450px] xl:w-[600px] transition-all duration-700 group"
             style={{
               maskImage: 'linear-gradient(to bottom, black 75%, transparent 98%)',
               WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 98%)',
@@ -85,19 +85,19 @@ const Hero = () => {
         </div>
 
         {/* Right side - Titles */}
-        <div className="w-full text-center lg:text-right order-3 lg:pr-12 xl:pr-24">
+        <div className="w-full text-center lg:text-right order-3">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 01</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[6rem] font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
               DEV<span className="text-primary">EL</span>OPER
             </h2>
             
             <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 02</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[6rem] font-black leading-[0.85] tracking-tighter uppercase" 
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl font-black leading-[0.85] tracking-tighter uppercase" 
               style={{ WebkitTextStroke: '1px rgba(224, 255, 0, 0.4)', color: 'transparent' }}>
               & AI/ML
             </h2>
