@@ -127,7 +127,7 @@ const DataArchitecture = () => {
       for (let i = 0; i < 4; i++) {
         const yOffset = i * 50 - 75;
         const opacity = 0.2 + (i * 0.2);
-        const float = Math.sin(frame * 0.02 + i) * 8;
+        const float = Math.sin(frame * 0.01 + i) * 8; // Slower float
         
         ctx.strokeStyle = `rgba(224, 255, 0, ${opacity})`;
         
@@ -157,8 +157,8 @@ const DataArchitecture = () => {
         }
       }
 
-      // Vertical Data Pulse
-      const pulseY = (frame * 3) % 240 - 120;
+      // Vertical Data Pulse (Slower)
+      const pulseY = (frame * 1.5) % 240 - 120;
       ctx.fillStyle = "#e0ff00";
       ctx.shadowBlur = 20;
       ctx.shadowColor = "#e0ff00";
@@ -298,6 +298,7 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+              className={i === 1 ? "lg:order-2" : ""}
             >
               <span className="text-primary text-[10px] font-black tracking-[0.5em] uppercase mb-8 block font-sans">
                 {svc.label}
@@ -317,7 +318,7 @@ const Services = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="h-[300px] md:h-[450px] relative flex items-center justify-center overflow-hidden"
+              className={`h-[300px] md:h-[450px] relative flex items-center justify-center overflow-hidden ${i === 1 ? "lg:order-1" : ""}`}
             >
               {i === 0 && <ParticleSphere />}
               {i === 1 && <DataArchitecture />}
