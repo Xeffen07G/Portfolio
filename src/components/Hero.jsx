@@ -39,8 +39,8 @@ const Hero = () => {
 
       {/* Main hero content */}
       {/* Main hero content */}
-      <div className="flex-1 flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-[1fr_auto_1fr] items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
-        {/* Left side - Name */}
+      <div className="flex-1 flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-3 items-center justify-items-center relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-12">
+        {/* Name - Now physically first for mobile reliability */}
         <div className="w-full text-center lg:text-left order-1">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -57,8 +57,8 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Center - Portrait with Magnetic Effect */}
-        <div className="relative order-2 z-20 cursor-none flex justify-center">
+        {/* Center - Portrait */}
+        <div className="relative z-20 cursor-none flex justify-center order-2">
           <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
