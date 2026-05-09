@@ -1,12 +1,41 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { FiArrowUpRight } from "react-icons/fi";
+import React, { useState, useEffect } from "react";
+import { motion, useSpring, useTransform } from "framer-motion";
+import { useMagnetic } from "../hooks/useMagnetic";
 
 const Hero = () => {
+  const { ref, position, handleMouseMove, handleMouseLeave } = useMagnetic(0.2);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleGlobalMouseMove);
+    return () => window.removeEventListener("mousemove", handleGlobalMouseMove);
+  }, []);
+
+  // Spring animations for the portrait
+  const springConfig = { damping: 20, stiffness: 150 };
+  const springX = useSpring(position.x, springConfig);
+  const springY = useSpring(position.y, springConfig);
+
+  useEffect(() => {
+    springX.set(position.x);
+    springY.set(position.y);
+  }, [position, springX, springY]);
+
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-between px-6 md:px-12 lg:px-24 pt-32 pb-12 overflow-hidden bg-bg">
-      {/* Background Subtle Gradient */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+      {/* Background Studio Spotlight */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-40 transition-opacity duration-1000"
+        style={{
+          background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(224, 255, 0, 0.05) 0%, transparent 50%)`
+        }}
+      />
+      
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px] -z-10" />
+      <div className="absolute -bottom-24 -left-24 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -z-10" />
 
       {/* Main hero content */}
       <div className="flex-1 flex flex-col lg:flex-row items-center lg:items-end justify-between relative z-10 gap-8 lg:gap-4 xl:gap-16">
@@ -17,7 +46,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-text/40 mb-6 font-bold font-sans">
               Engineering <span className="text-primary">/</span> AI Systems
             </p>
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-7xl xl:text-9xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase">
@@ -27,22 +56,30 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Center - Portrait */}
-        <div className="relative order-1 lg:order-2 shrink-0 z-20 mx-4">
+        {/* Center - Portrait with Magnetic Effect */}
+        <div className="relative order-1 lg:order-2 shrink-0 z-20 mx-4 cursor-none">
           <motion.div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ x: springX, y: springY }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative w-64 sm:w-72 md:w-80 lg:w-64 xl:w-80 aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 group shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]"
+            className="relative w-64 sm:w-72 md:w-80 lg:w-64 xl:w-96 aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 transition-all duration-700 group shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)]"
           >
             <img 
-              src="/profile.webp" 
+              src="/profile.png" 
               alt="Sayak Das" 
-              className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
+              className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
             />
+            {/* Subtle Overlay Glow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent opacity-60" />
           </motion.div>
-          {/* Decorative Ring */}
-          <div className="absolute -inset-4 border border-primary/10 rounded-3xl -z-10 animate-pulse" />
+          
+          {/* Decorative Rings */}
+          <div className="absolute -inset-6 border border-primary/10 rounded-3xl -z-10 animate-pulse" />
+          <div className="absolute -inset-10 border border-white/5 rounded-[40px] -z-20" />
         </div>
 
         {/* Right side - Titles */}
@@ -52,12 +89,12 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <span className="text-primary text-[10px] font-black tracking-[0.4em]">SPEC 01</span>
+            <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 01</span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-black text-text-bright leading-[0.85] tracking-tighter uppercase mb-8">
               DEV<span className="text-primary">EL</span>OPER
             </h2>
             
-            <span className="text-primary text-[10px] font-black tracking-[0.4em] block">SPEC 02</span>
+            <span className="text-primary text-sm font-medium italic font-serif tracking-widest block mb-1">Spec 02</span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-black leading-[0.85] tracking-tighter uppercase" 
               style={{ WebkitTextStroke: '1px rgba(224, 255, 0, 0.4)', color: 'transparent' }}>
               & AI/ML

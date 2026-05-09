@@ -11,6 +11,7 @@
   --color-text: #666666;
   --color-text-bright: #ffffff;
   --color-border: rgba(255, 255, 255, 0.08);
+  --font-serif: 'Cormorant Garamond', serif;
 }
 
 @layer base {
@@ -84,6 +85,16 @@
   @keyframes pulse-dot {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(1.5); }
+  }
+  /* Marquee Animation */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
   }
   .pulse-dot {
     animation: pulse-dot 2s ease-in-out infinite;
