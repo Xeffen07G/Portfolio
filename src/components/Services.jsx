@@ -204,7 +204,7 @@ const ParticleBot = () => {
       const cy = h * 0.5 + Math.sin(frame * 0.03) * 5;
 
       ctx.strokeStyle = "#e0ff00";
-      ctx.lineWidth = 12; // Bold lines like the icon
+      ctx.lineWidth = 2; // Precision blueprint lines
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
 
@@ -214,19 +214,17 @@ const ParticleBot = () => {
       ctx.lineTo(cx, cy - 110);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(cx, cy - 120, 8, 0, Math.PI * 2);
-      ctx.fillStyle = "#e0ff00";
-      ctx.fill();
+      ctx.arc(cx, cy - 115, 5, 0, Math.PI * 2);
+      ctx.stroke(); // Outline instead of solid fill
 
       // 2. Head Unit
       ctx.beginPath();
       ctx.roundRect(cx - 80, cy - 80, 160, 100, 35);
       ctx.stroke();
 
-      // Eyes
-      ctx.fillStyle = "#e0ff00";
-      ctx.fillRect(cx - 30, cy - 50, 12, 25);
-      ctx.fillRect(cx + 18, cy - 50, 12, 25);
+      // Eyes (Outlines for a cleaner look)
+      ctx.strokeRect(cx - 30, cy - 50, 10, 20);
+      ctx.strokeRect(cx + 20, cy - 50, 10, 20);
 
       // 3. Body
       ctx.beginPath();
@@ -240,8 +238,8 @@ const ParticleBot = () => {
       ctx.quadraticCurveTo(cx - 120, cy + 20, cx - 120, cy + 80);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(cx - 120, cy + 90, 15, Math.PI, 0); // Rounded end
-      ctx.fill();
+      ctx.arc(cx - 120, cy + 85, 10, Math.PI, 0); 
+      ctx.stroke();
 
       // Right Arm
       ctx.beginPath();
@@ -249,11 +247,11 @@ const ParticleBot = () => {
       ctx.quadraticCurveTo(cx + 120, cy + 20, cx + 120, cy + 80);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(cx + 120, cy + 90, 15, Math.PI, 0);
-      ctx.fill();
+      ctx.arc(cx + 120, cy + 85, 10, Math.PI, 0);
+      ctx.stroke();
 
       // 5. Bottom "Thrust" Lines
-      ctx.lineWidth = 10;
+      ctx.lineWidth = 1.5;
       const tY = cy + 130;
       [cx - 30, cx, cx + 30].forEach((tx, i) => {
         const bh = i === 1 ? 40 : 25;
