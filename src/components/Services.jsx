@@ -174,7 +174,7 @@ const DataArchitecture = () => {
   return <canvas ref={canvasRef} className="w-full h-full opacity-80" />;
 };
 
-/* Blueprint Bot Animation for Robotics */
+/* Full Blueprint Bot Animation for Robotics */
 const ParticleBot = () => {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -195,14 +195,13 @@ const ParticleBot = () => {
     resize();
 
     const particles = [];
-    const count = 600;
-
+    const count = 500;
     for (let i = 0; i < count; i++) {
       particles.push({
         angle: Math.random() * Math.PI * 2,
-        radius: 40 + Math.random() * 60,
+        radius: 30 + Math.random() * 80,
         speed: 0.01 + Math.random() * 0.02,
-        size: 0.5 + Math.random() * 1.5
+        size: 0.5 + Math.random() * 1.2
       });
     }
 
@@ -213,27 +212,58 @@ const ParticleBot = () => {
       ctx.clearRect(0, 0, w, h);
 
       const cx = w * 0.5;
-      const cy = h * 0.5;
+      const cy = h * 0.5 + Math.sin(frame * 0.02) * 5;
 
-      // 1. Draw Blueprint Outline (The "Understandable" Shape)
-      ctx.strokeStyle = "rgba(224, 255, 0, 0.25)";
+      ctx.strokeStyle = "rgba(224, 255, 0, 0.2)";
       ctx.lineWidth = 1.5;
+
+      // 1. Head Unit (with Screen)
+      ctx.beginPath();
+      ctx.roundRect(cx - 70, cy - 80, 140, 100, 30); // Main Head
+      ctx.stroke();
       
-      // Main Head Outline
+      ctx.fillStyle = "rgba(224, 255, 0, 0.03)";
       ctx.beginPath();
-      ctx.roundRect(cx - 80, cy - 70, 160, 130, 40);
+      ctx.roundRect(cx - 60, cy - 70, 120, 80, 20); // Screen Area
+      ctx.fill();
       ctx.stroke();
 
-      // Side Sensors / "Ears"
+      // 2. Body Core
       ctx.beginPath();
-      ctx.roundRect(cx - 100, cy - 25, 20, 50, 5);
-      ctx.roundRect(cx + 80, cy - 25, 20, 50, 5);
+      ctx.roundRect(cx - 50, cy + 25, 100, 70, 25);
       ctx.stroke();
 
-      // 2. Draw Particles (Internal Energy)
+      // 3. Limbs (Hands/Arms)
+      // Left Arm
+      ctx.beginPath();
+      ctx.moveTo(cx - 70, cy - 10);
+      ctx.quadraticCurveTo(cx - 110, cy + 20, cx - 100, cy + 70);
+      ctx.stroke();
+      // Fingers
+      for(let i=0; i<3; i++) {
+        ctx.beginPath();
+        ctx.moveTo(cx - 100, cy + 70);
+        ctx.lineTo(cx - 110 + i * 10, cy + 85);
+        ctx.stroke();
+      }
+
+      // Right Arm
+      ctx.beginPath();
+      ctx.moveTo(cx + 70, cy - 10);
+      ctx.quadraticCurveTo(cx + 110, cy + 20, cx + 100, cy + 70);
+      ctx.stroke();
+      // Fingers
+      for(let i=0; i<3; i++) {
+        ctx.beginPath();
+        ctx.moveTo(cx + 100, cy + 70);
+        ctx.lineTo(cx + 110 - i * 10, cy + 85);
+        ctx.stroke();
+      }
+
+      // 4. Internal Energy Flow
       particles.forEach((p, i) => {
         const x = cx + Math.cos(p.angle + frame * p.speed) * p.radius;
-        const y = cy + Math.sin(p.angle + frame * p.speed * 0.5) * (p.radius * 0.6);
+        const y = cy + Math.sin(p.angle + frame * p.speed * 0.5) * (p.radius * 0.8);
         
         ctx.fillStyle = `rgba(224, 255, 0, ${0.1 + Math.random() * 0.2})`;
         ctx.beginPath();
@@ -241,25 +271,19 @@ const ParticleBot = () => {
         ctx.fill();
       });
 
-      // 3. Optical Units (The Eyes)
+      // 5. Optical Units (Eyes)
       const blink = Math.sin(frame * 0.04) > 0.98 ? 0.1 : 1;
       ctx.fillStyle = "#e0ff00";
       ctx.shadowBlur = 15;
       ctx.shadowColor = "#e0ff00";
       
-      // Left Lens
       ctx.beginPath();
-      ctx.arc(cx - 35, cy - 5, 12, 0, Math.PI * 2);
-      ctx.scale(1, blink); // Blinking effect
+      ctx.ellipse(cx - 30, cy - 30, 10, 15 * blink, 0, 0, Math.PI * 2);
       ctx.fill();
-      ctx.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
-
-      // Right Lens
+      
       ctx.beginPath();
-      ctx.arc(cx + 35, cy - 5, 12, 0, Math.PI * 2);
-      ctx.scale(1, blink);
+      ctx.ellipse(cx + 30, cy - 30, 10, 15 * blink, 0, 0, Math.PI * 2);
       ctx.fill();
-      ctx.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
       
       ctx.shadowBlur = 0;
 
