@@ -83,27 +83,30 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <Link
-          to="/#contact"
-          onClick={(e) => {
-            if (location.pathname === "/") {
-              e.preventDefault();
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              window.history.pushState(null, "", "/#contact");
-            }
-          }}
-          className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-primary text-bg text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
-        >
-          Let's Talk
-        </Link>
+        {/* Right side - CTA + Mobile Toggle */}
+        <div className="flex items-center gap-2 sm:gap-4">
+          <Link
+            to="/#contact"
+            onClick={(e) => {
+              if (location.pathname === "/") {
+                e.preventDefault();
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                window.history.pushState(null, "", "/#contact");
+              }
+            }}
+            className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-primary text-bg text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
+          >
+            Let's Talk
+          </Link>
 
-        {/* Mobile Toggle */}
-        <button
-          className="lg:hidden text-text-bright p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <HiX size={24} /> : <HiMenuAlt4 size={24} />}
-        </button>
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden text-text-bright p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <HiX size={24} /> : <HiMenuAlt4 size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
