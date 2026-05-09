@@ -49,7 +49,7 @@ const achievements = [
     category: "AI",
     date: "2026",
     description: "Completed the Google for Education AI Implementation Program 2026.",
-    image: null,
+    image: "/certificates/google-ai-edu.png",
   },
   {
     title: "Google Gemini Academy",
@@ -57,7 +57,7 @@ const achievements = [
     category: "AI",
     date: "2025",
     description: "Completed the Google Gemini Academy certification program.",
-    image: null,
+    image: "/certificates/google-gemini.png",
   },
   {
     title: "Hult Prize Committee",
@@ -65,7 +65,7 @@ const achievements = [
     category: "Leadership",
     date: "2025",
     description: "Served as Organizing Committee Member for Hult Prize at Techno India University.",
-    image: null,
+    image: "/certificates/hult-prize.png",
   },
   {
     title: "Climate Fresk Workshop",
@@ -73,7 +73,7 @@ const achievements = [
     category: "Workshop",
     date: "2025",
     description: "Participated in the Climate Fresk Workshop exploring climate science and sustainability.",
-    image: null,
+    image: "/certificates/climate-fresk.png",
   },
 ];
 
@@ -160,16 +160,16 @@ const Achievements = () => {
               </div>
 
               {ach.image && (
-                <a 
-                  href={ach.image} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-2 text-[10px] font-black tracking-widest text-primary hover:text-white transition-colors mt-6 pt-4 border-t border-white/5"
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelected(ach);
+                  }}
+                  className="flex items-center gap-2 text-[10px] font-black tracking-widest text-primary hover:text-white transition-colors mt-6 pt-4 border-t border-white/5 w-full text-left cursor-pointer"
                 >
                   <FiExternalLink size={14} />
                   VIEW CERTIFICATE
-                </a>
+                </button>
               )}
             </motion.div>
           ))}

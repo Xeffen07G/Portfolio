@@ -1,131 +1,148 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { FiAward, FiExternalLink, FiTarget, FiZap, FiGlobe, FiCpu } from "react-icons/fi";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiAward, FiExternalLink, FiTarget, FiZap, FiGlobe, FiCpu, FiX, FiSearch } from "react-icons/fi";
 
 const certifications = [
   {
     title: "TCS Research Project",
-    issuer: "Tata Consultancy Services / e1133",
-    date: "2025",
-    color: "#e0ff00",
-    tags: ["Research", "Collaborative", "TCS"],
-    id: "TCS-25-RES"
+    issuer: "Tata Consultancy Services",
+    date: "2024",
+    color: "#ff8c00",
+    tags: ["Research", "Development", "Professional"],
+    id: "TCS-24-RD",
+    image: "/certificates/tcs-research.png"
   },
   {
     title: "Google Gemini Academy",
     issuer: "Google / upEducators",
-    date: "2026",
-    color: "#00f0ff",
-    tags: ["GenAI", "Gemini", "AI Mastery"],
-    id: "GOOG-26-GEM"
+    date: "2025",
+    color: "#4285F4",
+    tags: ["AI", "Generative AI", "Google"],
+    id: "GOOG-25-GEMINI",
+    image: "/certificates/google-gemini.png"
   },
   {
     title: "AI Launchpad Masterclass",
     issuer: "Product Space",
     date: "2026",
-    color: "#ff00e0",
-    tags: ["Product AI", "Masterclass", "AI Strategy"],
-    id: "PS-26-AIL"
+    color: "#3b82f6",
+    tags: ["AI", "Masterclass", "Product Strategy"],
+    id: "PS-26-AILP",
+    image: "/certificates/ai-launchpad.png"
   },
   {
     title: "Hult Prize Committee",
-    issuer: "Hult Prize / TIU",
+    issuer: "Hult Prize Foundation",
     date: "2026",
-    color: "#ffffff",
-    tags: ["Leadership", "Global", "Organizing"],
-    id: "HULT-26-ORG"
+    color: "#000000",
+    tags: ["Leadership", "Organization", "Social Impact"],
+    id: "HULT-26-OC",
+    image: "/certificates/hult-prize.png"
   },
   {
-    title: "IDEA CHAIN Winner (3rd)",
-    issuer: "Takshila Club / Innovation & Management",
-    date: "2025",
-    color: "#e0ff00",
-    tags: ["Winner", "Ideathon", "Management"],
-    id: "TIU-25-WIN"
-  },
-  {
-    title: "Student AI Masterclass",
+    title: "Google AI Implementation",
     issuer: "Google for Education / upEducators",
     date: "2026",
-    color: "#00f0ff",
+    color: "#f43f5e",
     tags: ["AI Implementation", "Google Edu", "Masterclass"],
-    id: "GOOG-26-EDU"
-  },
-  {
-    title: "Sandbox CCU Excellence",
-    issuer: "Techno India University / Edition #2",
-    date: "2025",
-    color: "#ff00e0",
-    tags: ["Excellence", "Top-Performer", "Team GalpoPath"],
-    id: "TIU-25-SND"
-  },
-  {
-    title: "GDG Devcation Delhi",
-    issuer: "Google Developer Groups / IIT Delhi",
-    date: "2026",
-    color: "#ffffff",
-    tags: ["Google Devs", "GDG Delhi", "Tech Summit"],
-    id: "GDG-26-DEV"
+    id: "GOOG-26-EDU",
+    image: "/certificates/google-ai-edu.png"
   },
   {
     title: "Climate Fresk Workshop",
     issuer: "The Rebalance Institute / TIU",
     date: "2025",
-    color: "#e0ff00",
-    tags: ["Sustainability", "Workshop", "Social Impact"],
-    id: "REB-25-CLM"
+    color: "#22c55e",
+    tags: ["Sustainability", "Workshop", "Climate Science"],
+    id: "REB-25-CLIM",
+    image: "/certificates/climate-fresk.png"
   },
   {
     title: "Innovex Storm Hackathon",
-    issuer: "SRMIST / SRM Institute of Science and Tech",
+    issuer: "SRMIST / Team NoXperience",
     date: "2024",
-    color: "#00f0ff",
-    tags: ["Hackathon", "Team NoXperience", "Innovation"],
-    id: "SRM-24-HACK"
+    color: "#ff0000",
+    tags: ["Hackathon", "Innovation", "Development"],
+    id: "SRM-24-HACK",
+    image: "/certificates/innovex-storm.png"
   },
   {
-    title: "Hackfest Captain",
-    issuer: "GeeksforGeeks Classroom Program",
+    title: "CXO' Round Table Event",
+    issuer: "The Technical Club Takshila",
     date: "2024",
-    color: "#ff00e0",
-    tags: ["Captain", "GFG Hack", "Leadership"],
-    id: "GFG-24-CAP"
+    color: "#eab308",
+    tags: ["Leadership", "Management", "Networking"],
+    id: "TIU-24-CXO",
+    image: "/certificates/cxo-round-table.jpg"
   },
   {
-    title: "CXO' Round Table",
-    issuer: "Techno India University / Takshila",
-    date: "2024",
-    color: "#ffffff",
-    tags: ["Leadership", "Innovation & Management", "CXO Forum"],
-    id: "TIU-24-CXO"
-  },
-  {
-    title: "THE ESCAPE: IDEATHON",
-    issuer: "Takshila Club / Computing Domain",
-    date: "2025",
-    color: "#e0ff00",
-    tags: ["Ideathon", "Computing", "Strategy"],
-    id: "TIU-25-ESC"
+    title: "Nestlé E-learning | Resilience",
+    issuer: "Nestlé Nesternship",
+    date: "2026",
+    color: "#0ea5e9",
+    tags: ["Professional", "Resilience", "E-learning"],
+    id: "NESTLE-26-RES",
+    image: "/certificates/nestle-resilience.png"
   },
   {
     title: "Pitch To Deck Event",
     issuer: "The Technical Club Takshila",
     date: "2024",
     color: "#00f0ff",
-    tags: ["Pitching", "Venture Capital", "Startup Logic"],
-    id: "TIU-24-PTD"
+    tags: ["Pitching", "Startup Logic", "Competition"],
+    id: "TIU-24-PTD",
+    image: "/certificates/pitch-to-deck.png"
   },
   {
-    title: "Nestlé E-learning | Resilience",
-    issuer: "Nestlé Nesternship 2026",
+    title: "NoDevBuild Selection Confirmation",
+    issuer: "E-Summit x APOGEE '26",
     date: "2026",
-    color: "#ff00e0",
-    tags: ["Professionalism", "Nesternship", "Soft Skills"],
-    id: "NST-26-RES"
+    color: "#a855f7",
+    tags: ["Ideathon", "Innovation", "Selection"],
+    id: "BITS-26-NDB",
+    image: "/certificates/nodevbuild.png"
+  },
+  {
+    title: "IDEA CHAIN Winner (3rd)",
+    issuer: "Takshila Club / School of Future",
+    date: "2025",
+    color: "#e0ff00",
+    tags: ["Winner", "Ideathon", "Competition"],
+    id: "TIU-25-WIN",
+    image: "/certificates/idea-chain.png"
+  },
+  {
+    title: "Sandbox CCU Excellence",
+    issuer: "Techno India University / Edition #2",
+    date: "2025",
+    color: "#ff00ff",
+    tags: ["Excellence", "Innovation", "Top-Performer"],
+    id: "TIU-25-SND",
+    image: "/certificates/sandbox-ccu.png"
+  },
+  {
+    title: "GDG Devcation Delhi",
+    issuer: "GDG On Campus / IIT Delhi",
+    date: "2026",
+    color: "#ffffff",
+    tags: ["Google Devs", "Hackathon", "Tech Summit"],
+    id: "GDG-26-DEV",
+    image: "/certificates/devcation-delhi.png"
+  },
+  {
+    title: "Hackfest Captain",
+    issuer: "GeeksforGeeks Classroom Program",
+    date: "2024",
+    color: "#4ade80",
+    tags: ["Captain", "GFG Hack", "Leadership"],
+    id: "GFG-24-CAP",
+    image: "/certificates/hackfest.png"
   }
 ];
 
 const Certifications = () => {
+  const [selectedCert, setSelectedCert] = useState(null);
+
   return (
     <section id="certifications" className="relative py-32 px-6 md:px-12 lg:px-24 bg-bg overflow-hidden">
       {/* Background decoration */}
@@ -144,14 +161,14 @@ const Certifications = () => {
           THE <span className="text-primary italic">VAULT</span>
         </h2>
         <p className="text-text max-w-xl mt-6 text-lg">
-          An elite archive of 15 high-impact certifications, research projects, and global leadership roles.
+          An elite archive of {certifications.length} high-impact certifications, research projects, and global leadership roles.
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {certifications.map((cert, i) => (
           <motion.div
-            key={cert.title}
+            key={cert.id + i}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -202,14 +219,90 @@ const Certifications = () => {
 
               <div className="flex items-center justify-between pt-4 border-t border-white/5">
                 <span className="text-xs font-bold text-text uppercase italic">{cert.date}</span>
-                <button className="flex items-center gap-2 text-[9px] font-black tracking-widest text-text-bright uppercase group-hover:text-primary transition-all">
-                  VIEW <FiExternalLink />
-                </button>
+                {cert.image ? (
+                  <button 
+                    onClick={() => setSelectedCert(cert)}
+                    className="flex items-center gap-2 text-[9px] font-black tracking-widest text-text-bright uppercase hover:text-primary transition-all cursor-pointer group/btn"
+                  >
+                    VIEW <FiSearch className="group-hover/btn:scale-125 transition-transform" />
+                  </button>
+                ) : (
+                  <span className="text-[9px] font-black tracking-widest text-text/30 uppercase">
+                    IN REVIEW
+                  </span>
+                )}
               </div>
             </div>
           </motion.div>
         ))}
       </div>
+
+      {/* Modal Backdrop */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCert(null)}
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-5xl w-full bg-bg border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-primary/10"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 flex items-center justify-center text-text-bright hover:bg-primary hover:text-black transition-all duration-300"
+              >
+                <FiX size={20} />
+              </button>
+
+              <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
+                {/* Image Container */}
+                <div className="lg:w-2/3 bg-black flex items-center justify-center p-4 overflow-hidden">
+                  <img
+                    src={selectedCert.image}
+                    alt={selectedCert.title}
+                    className="max-w-full max-h-full object-contain rounded-lg"
+                  />
+                </div>
+
+                {/* Info Container */}
+                <div className="lg:w-1/3 p-8 md:p-12 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-white/5 bg-white/[0.01]">
+                  <span className="text-primary text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">
+                    {selectedCert.id}
+                  </span>
+                  <h3 className="text-3xl md:text-4xl font-black text-text-bright tracking-tight uppercase leading-none mb-6">
+                    {selectedCert.title}
+                  </h3>
+                  <div className="space-y-4 mb-8">
+                    <div>
+                      <p className="text-[10px] font-bold text-text/40 uppercase tracking-widest mb-1">Issuer</p>
+                      <p className="text-lg text-text-bright font-medium">{selectedCert.issuer}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold text-text/40 uppercase tracking-widest mb-1">Date</p>
+                      <p className="text-lg text-text-bright font-medium italic">{selectedCert.date}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedCert.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-bold px-3 py-1.5 bg-white/5 rounded-full border border-white/10 text-text uppercase">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
