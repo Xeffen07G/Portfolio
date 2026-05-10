@@ -23,7 +23,6 @@ const Home = () => {
       <Services />
       <Projects />
       <Manifesto />
-      <Contact />
     </div>
   );
 };

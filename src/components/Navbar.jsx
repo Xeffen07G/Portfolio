@@ -86,14 +86,7 @@ const Navbar = () => {
         {/* Right side - CTA + Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-4">
           <Link
-            to="/#contact"
-            onClick={(e) => {
-              if (location.pathname === "/") {
-                e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                window.history.pushState(null, "", "/#contact");
-              }
-            }}
+            to="/contact"
             className="px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-full bg-primary text-bg text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all"
           >
             Let's Talk
@@ -139,17 +132,8 @@ const Navbar = () => {
               ))}
               <li className="mt-10">
                 <Link
-                  to="/#contact"
-                  onClick={(e) => {
-                    setMobileOpen(false);
-                    if (location.pathname === "/") {
-                      e.preventDefault();
-                      setTimeout(() => {
-                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                        window.history.pushState(null, "", "/#contact");
-                      }, 300);
-                    }
-                  }}
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
                   className="inline-block px-10 py-5 rounded-full bg-primary text-bg font-black uppercase tracking-widest"
                 >
                   Hire Me

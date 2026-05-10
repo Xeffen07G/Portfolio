@@ -11,6 +11,7 @@ import "./index.css";
 
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 const AchievementsPage = lazy(() => import("./pages/AchievementsPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/achievements" element={<AchievementsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
               </Routes>
             </Suspense>
           </main>

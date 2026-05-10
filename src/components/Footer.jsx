@@ -5,7 +5,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 
 const Footer = () => {
   return (
-    <footer id="contact" className="relative px-6 md:px-12 lg:px-24 pt-24 pb-12 border-t border-white/5">
+    <footer className="relative px-6 md:px-12 lg:px-24 pt-24 pb-12 border-t border-white/5">
       {/* Main CTA */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -24,12 +24,12 @@ const Footer = () => {
           </h2>
         </div>
 
-        <a
-          href="mailto:sayakdas.slsn8cd@gmail.com"
+        <Link
+          to="/contact"
           className="w-20 h-20 md:w-28 md:h-28 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-500 group mt-12 md:mt-0"
         >
           <FiArrowUpRight className="text-2xl md:text-3xl text-white group-hover:text-bg transition-colors" />
-        </a>
+        </Link>
       </motion.div>
 
       {/* Contact info row */}
