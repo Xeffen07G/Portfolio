@@ -88,7 +88,7 @@ const ContactPage = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div className="group relative">
-                    <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold block mb-2 group-focus-within:text-primary transition-colors">Your Name</label>
+                    <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold block mb-2 group-focus-within:text-primary transition-colors pl-1">Your Name</label>
                     <input
                       type="text"
                       name="name"
@@ -96,11 +96,11 @@ const ContactPage = () => {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="ENTER FULL NAME"
-                      className="w-full bg-transparent border-b border-white/10 py-4 text-xl md:text-2xl font-black text-text-bright placeholder-white/5 focus:outline-none focus:border-primary transition-all tracking-tight uppercase"
+                      className="w-full bg-transparent border-b border-white/10 py-4 px-1 text-xl md:text-2xl font-black text-text-bright placeholder-white/5 focus:outline-none focus:border-primary transition-all tracking-tight uppercase"
                     />
                   </div>
                   <div className="group relative">
-                    <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold block mb-2 group-focus-within:text-primary transition-colors">Email Address</label>
+                    <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold block mb-2 group-focus-within:text-primary transition-colors pl-1">Email Address</label>
                     <input
                       type="email"
                       name="email"
@@ -108,13 +108,13 @@ const ContactPage = () => {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="ENTER EMAIL"
-                      className="w-full bg-transparent border-b border-white/10 py-4 text-xl md:text-2xl font-black text-text-bright placeholder-white/5 focus:outline-none focus:border-primary transition-all tracking-tight uppercase"
+                      className="w-full bg-transparent border-b border-white/10 py-4 px-1 text-xl md:text-2xl font-black text-text-bright placeholder-white/5 focus:outline-none focus:border-primary transition-all tracking-tight uppercase"
                     />
                   </div>
                 </div>
 
                 <div className="group relative">
-                  <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold block mb-2 group-focus-within:text-primary transition-colors">Project Manifesto</label>
+                  <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold block mb-2 group-focus-within:text-primary transition-colors pl-1">Project Manifesto</label>
                   <textarea
                     name="message"
                     required
@@ -122,7 +122,7 @@ const ContactPage = () => {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="DESCRIBE THE VISION..."
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-xl md:text-2xl font-black text-text-bright placeholder-white/5 focus:outline-none focus:border-primary transition-all tracking-tight uppercase resize-none"
+                    className="w-full bg-transparent border-b border-white/10 py-4 px-1 text-xl md:text-2xl font-black text-text-bright placeholder-white/5 focus:outline-none focus:border-primary transition-all tracking-tight uppercase resize-none"
                   />
                 </div>
 
