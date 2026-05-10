@@ -79,16 +79,16 @@ const ContactPage = () => {
       <div className="absolute -bottom-24 -left-24 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto">
-        <Link to="/" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] font-bold text-text/50 hover:text-primary transition-colors mb-12">
-          <FiArrowLeft /> Back to Home
+        <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.4em] font-black text-text/50 hover:text-primary transition-all mb-12">
+          <FiArrowLeft strokeWidth={3} /> BACK TO HOME
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           <div className="lg:col-span-5">
             <Reveal y={40}>
-              <h1 className="text-5xl md:text-8xl font-black text-text-bright tracking-tighter uppercase leading-[0.85] mb-8 safe-heading">
-                Connect <br />
-                <span className="text-primary italic">Now.</span>
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-text-bright tracking-tighter uppercase leading-[0.8] mb-8 safe-heading">
+                CONNECT <br />
+                <span className="text-primary italic">NOW.</span>
               </h1>
             </Reveal>
             
@@ -129,7 +129,7 @@ const ContactPage = () => {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold">
+                    <label className="text-[10px] text-text/60 uppercase tracking-[0.3em] font-bold">
                       Name
                     </label>
                     <input
@@ -139,11 +139,11 @@ const ContactPage = () => {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="ENTER NAME"
-                      className="w-full bg-white/5 border-b border-white/10 px-0 py-4 text-lg text-text-bright placeholder-text/20 focus:outline-none focus:border-primary transition-all font-black uppercase tracking-tight"
+                      className="w-full bg-white/[0.03] border-b border-white/20 px-0 py-4 text-lg text-text-bright placeholder-text/40 focus:outline-none focus:border-primary transition-all font-black uppercase tracking-tight"
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[10px] text-text/40 uppercase tracking-[0.3em] font-bold">
+                    <label className="text-[10px] text-text/60 uppercase tracking-[0.3em] font-bold">
                       Email
                     </label>
                     <input
@@ -153,7 +153,7 @@ const ContactPage = () => {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="ENTER EMAIL"
-                      className="w-full bg-white/5 border-b border-white/10 px-0 py-4 text-lg text-text-bright placeholder-text/20 focus:outline-none focus:border-primary transition-all font-black uppercase tracking-tight"
+                      className="w-full bg-white/[0.03] border-b border-white/20 px-0 py-4 text-lg text-text-bright placeholder-text/40 focus:outline-none focus:border-primary transition-all font-black uppercase tracking-tight"
                     />
                   </div>
                 </div>
@@ -169,7 +169,7 @@ const ContactPage = () => {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="TELL ME ABOUT YOUR PROJECT..."
-                    className="w-full bg-white/5 border-b border-white/10 px-0 py-4 text-lg text-text-bright placeholder-text/20 focus:outline-none focus:border-primary transition-all resize-none font-black uppercase tracking-tight"
+                    className="w-full bg-white/[0.03] border-b border-white/20 px-0 py-4 text-lg text-text-bright placeholder-text/40 focus:outline-none focus:border-primary transition-all resize-none font-black uppercase tracking-tight"
                   />
                 </div>
 
