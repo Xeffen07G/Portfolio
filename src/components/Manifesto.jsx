@@ -38,7 +38,7 @@ const Manifesto = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
 
   return (
-    <section ref={containerRef} className="relative h-[130vh] md:h-[300vh] bg-bg pt-0 md:pt-36">
+    <section ref={containerRef} className="relative h-[150vh] md:h-[200vh] bg-bg">
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center pt-4 md:pt-12">
         {/* Section header */}
         <div className="px-6 md:px-12 lg:px-24 mb-6 md:mb-12">
