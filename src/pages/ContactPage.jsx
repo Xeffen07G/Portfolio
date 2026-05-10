@@ -86,14 +86,14 @@ const ContactPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           <div className="lg:col-span-5">
             <Reveal y={40}>
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-text-bright tracking-tighter uppercase leading-[0.8] mb-8 safe-heading">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-text-bright tracking-tight uppercase leading-[0.95] mb-8 safe-heading">
                 CONNECT <br />
                 <span className="text-primary italic">NOW.</span>
               </h1>
             </Reveal>
             
             <Reveal y={20} delay={0.2}>
-              <p className="text-xl text-text leading-tight tracking-tight uppercase italic opacity-80 mb-12">
+              <p className="text-xl text-text-bright/80 leading-tight tracking-tight uppercase italic mb-12">
                 I'm always open to discussing new projects, creative ideas, or
                 opportunities to be part of something amazing.
               </p>
